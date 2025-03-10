@@ -1,12 +1,12 @@
-import styles from "./Footer.module.css"
+
 
 function Footer() {
   return (
     <>
-      <footer className={styles.footer}>
-        <a href="" className={styles.a}>Facebook</a>
-        <a href="" className={styles.a}>Instagram</a>
-        <a href="" className={styles.a}>Twiter</a>
+      <footer>
+        <a href="" >Facebook</a>
+        <a href="" >Instagram</a>
+        <a href="" >Twiter</a>
       </footer>
     </>
   );
