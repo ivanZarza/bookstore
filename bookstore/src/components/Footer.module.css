@@ -1,0 +1,15 @@
+.footer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(65, 214, 225);
+}
+
+.a {
+  color: black;
+  padding: 20px;
+}
+
+.a:hover {
+  color: white;
+}

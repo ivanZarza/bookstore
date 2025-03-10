@@ -1,0 +1,12 @@
+.a {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.menu {
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
