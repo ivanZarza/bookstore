@@ -2,7 +2,9 @@
 function Logo() {
   return (
     <>
-      <img src="/logazo.webp" alt="logo" width={110} />
+      <img src="/logazo.webp" alt="logo" 
+      className="size-40"
+      />
     </>
   );
 }
