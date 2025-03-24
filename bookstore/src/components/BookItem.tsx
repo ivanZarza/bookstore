@@ -28,7 +28,7 @@ function BookItem(props: BookItemsProps) {
         </div>
         <div className="w-full flex justify-between items-center p-2">
           <h4 className='text-[1.3rem]'>{book.author}</h4>
-          <p className='bg-blue-300 px-3 py-1 rounded-full'>{book.type}</p>
+          <p className='bg-blue-300 flex  px-3 py-1 rounded-full'>{book.type}</p>
         </div>
           <div className="w-full flex justify-between items-center p-2 text-[1rem]">
           <p>{book.price}€</p>

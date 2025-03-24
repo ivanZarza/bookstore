@@ -32,14 +32,23 @@ function BooksPage() {
   } 
 
   const listBooks = [book,book2,book3]
-  const painList = listBooks.map(libro => <li key={libro.id_book}><BookItem book={libro} /></li>)
   return (
-    <div className='w-full flex flex-col items-center justify-self-start border-2 gap-20 p-9'>
+    <div className='w-full flex flex-col items-center justify-start gap-20 p-9'>
       <div >
-      <h1 className='text-6xl'>Books</h1>
+      <h1 className=' text-4xl text-center
+                      md:text-5xl
+                      lg:text-6xl'
+      >Books</h1>
       </div>
-      <ul className='flex gap-24 '>
-      {painList}
+      <ul className='flex flex-col gap-6 justify-center items-center
+                      sm:gap-8
+                      md:flex-row md:gap-12
+                      lg:gap-18 '>
+        {listBooks.map(libro =>
+          <li key={libro.id_book}>
+            <BookItem book={libro} />
+          </li>
+        )}
       </ul>
     </div>
   );
