@@ -1,17 +1,22 @@
 // TODO LO COMENTADO ES LA SOLUCION DEL PROFESOR AL EJERCIO DEL TEMA 3
 
+import {  NavLink } from "react-router-dom";
+
+
+
+
 /* type MenuProps = {
   isOpenSidebar: boolean;
 }  */
 
 function Menu(/* props:MenuProps */) {
 
-/* const { isOpenSidebar } = props; */  
+  /* const { isOpenSidebar } = props; */
 
-/* const commoclases = 'clases de tailwind comunes';
-const sideBarClasses = 'clases de tailwind para menu en sidebar';
-const headerClasses = 'clases de tailwind para menu en header';
-const clases = `${commoclases} ${isOpenSidebar ? sideBarClasses: headerClasses}` //TERNARIO PARA DECIDIR QUE CLASES SE PASAN */
+  /* const commoclases = 'clases de tailwind comunes';
+  const sideBarClasses = 'clases de tailwind para menu en sidebar';
+  const headerClasses = 'clases de tailwind para menu en header';
+  const clases = `${commoclases} ${isOpenSidebar ? sideBarClasses: headerClasses}` //TERNARIO PARA DECIDIR QUE CLASES SE PASAN */
 
   return (
     <>
@@ -19,9 +24,9 @@ const clases = `${commoclases} ${isOpenSidebar ? sideBarClasses: headerClasses}`
                       sm:text-2xl sm:gap-4 sm:justify-end sm:flex-row sm:m-2 sm:w-full sm:bg-none sm:h-fit
                       md:text-3xl md:gap-6
                       lg:text-4xl lg:gap-8" /* {clases} */>
-        <a href="" >Home</a>
-        <a href="" >Libros</a>
-        <a href="" >Log In</a>
+        <NavLink to="/" >Home</NavLink>
+        <NavLink to="/about" >About</NavLink>
+        <NavLink to="BookPage" >Libros</NavLink>
       </nav>
     </>
   );
