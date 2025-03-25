@@ -5,13 +5,13 @@ function Menu() {
 
   return (
     <>
-      <nav className="flex flex-col justify-center text-xl gap-4 position-absolute top-20 left-50 w-full bg-teal-300 p-4
-                      sm:text-2xl sm:gap-1 sm:justify-end sm:flex-row sm:m-2
-                      md:text-3xl 
-                      lg:text-4xl">
-        <a href="" className="whitespace-nowrap ml-3" >Home</a>
-        <a href="" className="whitespace-nowrap ml-3">Libros</a>
-        <a href="" className="whitespace-nowrap ml-3">Log In</a>
+      <nav className="flex flex-col  justify-around items-center  text-4xl gap-2  w-full  p-4 h-200 bg-gradient-to-b bg-teal-300 to-white/80 
+                      sm:text-2xl sm:gap-4 sm:justify-end sm:flex-row sm:m-2 sm:w-full sm:bg-none sm:h-fit
+                      md:text-3xl md:gap-6
+                      lg:text-4xl lg:gap-8  ">
+        <a href="" >Home</a>
+        <a href="" >Libros</a>
+        <a href="" >Log In</a>
       </nav>
     </>
   );

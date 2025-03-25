@@ -1,12 +1,12 @@
 import Logo from "./Logo";
 import Menu from "./Menu";
-
 import { useState } from "react";
 
-
 function Header() {
+  
+  const [mostrarMenu, setMostrarMenu] = useState(false);
 
-  const [showMenu, setShowMenu] = useState(false);
+  const toggleMenu = () => setMostrarMenu(!mostrarMenu);
 
   return (
     <>
@@ -15,11 +15,13 @@ function Header() {
                           ">
         <div className="flex justify-between">
           <Logo />
-          <button onClick={() => setShowMenu(!showMenu)} className="sm:hidden ">
-            <img src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png" alt="Menu" />
-          </button>
+          <button onClick={toggleMenu} className="sm:hidden"><img src="" alt="" /></button>
         </div>
-        {showMenu && <Menu />}
+        <div className={`${mostrarMenu ? 'block' : 'hidden'}
+                        sm:block
+                      `}>
+          <Menu />
+        </div>
       </header>
     </>
   );

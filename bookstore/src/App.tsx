@@ -7,11 +7,13 @@ function App() {
 
 
   return <>
+  <div className='flex min-h-screen flex-col justify-between'>
     <Header  />
     <main className='grow '>
       <BooksPage />
     </main>
     <Footer />
+    </div>
   </>
 }
 
