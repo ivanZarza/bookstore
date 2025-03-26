@@ -1,8 +1,15 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
-import About from './pages/About' 
-import BooksPage from './pages/BooksPage'
+import PrivateRoutes from './components/PrivateRoutes';
+import PublicRoutes from './components/PublicRoutes';
+/* import BooksPage from './pages/BooksPage'
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
+import AddBook from './pages/AddBookPage';
+import EditBook from './pages/EditBookPage'; */
+
 import { Routes, Route } from "react-router-dom";
 
 
@@ -11,16 +18,16 @@ function App() {
 
 
   return <>
-  <div className='flex min-h-screen flex-col justify-between'>
-    <Header  />
-    <main className='grow '>
-    <Routes>
+    <div className='flex min-h-screen flex-col justify-between'>
+      <Header />
+      <main className='grow '>
+        <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/bookPage" element={<BooksPage />} />
-      </Routes>
-    </main>
-    <Footer />
+        <Route element={<PrivateRoutes />} />        
+        <Route element={<PublicRoutes />} /> 
+        </Routes>
+      </main>
+      <Footer />
     </div>
   </>
 }

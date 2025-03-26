@@ -18,6 +18,8 @@ function Menu(/* props:MenuProps */) {
   const headerClasses = 'clases de tailwind para menu en header';
   const clases = `${commoclases} ${isOpenSidebar ? sideBarClasses: headerClasses}` //TERNARIO PARA DECIDIR QUE CLASES SE PASAN */
 
+const user = "hola"
+
   return (
     <>
       <nav className="flex flex-col  justify-around items-center  text-4xl gap-2  w-full  p-4 h-200 bg-gradient-to-b bg-teal-300/90 to-white/90 backdrop-blur-lg
@@ -25,8 +27,12 @@ function Menu(/* props:MenuProps */) {
                       md:text-3xl md:gap-6
                       lg:text-4xl lg:gap-8" /* {clases} */>
         <NavLink to="/" >Home</NavLink>
-        <NavLink to="/about" >About</NavLink>
-        <NavLink to="BookPage" >Libros</NavLink>
+        {!user  && <NavLink to="/login" >Login</NavLink>}
+        {!user && <NavLink to="/register" >Register</NavLink>}
+        { user &&<NavLink to="/profile" >Profile</NavLink>}
+        { user &&<NavLink to="/BookPage" >Libros</NavLink>}
+        { user &&<NavLink to="/addbook" >Add Book</NavLink>}
+        { user &&<NavLink to="/editbook" >Edit Book</NavLink>}
       </nav>
     </>
   );
