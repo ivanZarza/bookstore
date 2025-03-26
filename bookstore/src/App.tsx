@@ -23,7 +23,9 @@ function App() {
       <main className='grow '>
         <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route element={<PrivateRoutes />} />        
+        <Route element={<PrivateRoutes />} > 
+        
+        </Route>        
         <Route element={<PublicRoutes />} /> 
         </Routes>
       </main>
