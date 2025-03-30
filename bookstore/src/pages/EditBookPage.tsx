@@ -1,12 +1,10 @@
-import InputComponent from "../components/layouts/InputComponent";
+import  FormComponent from "../components/layouts/FormComponent";
 
 function EditBook() {
   return <>
-    <div className="w-full h-96 flex flex-col justify-center items-center  border-2 ">
+    <div className="w-full h-full flex flex-col justify-center items-center  border-2 ">
       <h1>EDIT BOOK </h1>
-      <div>
-        <InputComponent placeholder="Titulo" name="title"/>
-      </div>
+        <FormComponent />
     </div>
   </>
 };

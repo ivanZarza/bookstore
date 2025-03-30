@@ -6,22 +6,21 @@ type InputProps = {
 }
 
 
-
 function InputComponent(props: InputProps) {
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [activo, setActivo] = useState(false);
 
 
   return (
     <div className="w-full flex bg-gray-200 border-2 border-teal-500  flex-col justify-between focus:outline-none">
-      <p>{isFocused ? `${props.placeholder}` : ''}</p>
-      <input
-        className="h-10 placeholder:text-3xl focus:outline-none text-xl"
+      <p>{activo ? `${props.placeholder}` : ''}</p>
+      <input 
+        className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-500 my-0.5"
         type="text"
         placeholder={props.placeholder}
         name={props.name}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={() => setActivo(true)}
+        onBlur={() => setActivo(false)}
       />
     </div>
   );
