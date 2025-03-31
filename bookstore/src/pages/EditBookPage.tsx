@@ -12,23 +12,27 @@ function EditBook() {
     photo: ''
   })
 
-  function recuperarDatos({ name, value } : { name: string, value: string | number }) {
-    console.log('recuperarDatos', { name, value })
+  const arrayDatos = Object.keys(datos)
+
+  function recuperarDatos(   name: string, value: string | number ) {
 
     setDatos({...datos, [name]: value}) 
-    console.log(name,value )
-    console.log(datos);
   }
 
   return <>
-    <div className="w-full h-full flex flex-col justify-center items-center  border-2 ">
-      <h1>EDIT BOOK </h1>
+    <div className="w-full  flex flex-col  items-center  border-2 ">
+      <div className="w-full flex h-1/7 justify-center items-center " >
+      <h1 className="text-4xl text-[#53b8fc] titulo"  >EDIT BOOK </h1>
+      </div>
       <FormComponent>
-        <InputComponent placeholder="Title" name="title" recuperarDatos={recuperarDatos} />
-        <InputComponent placeholder="Author" name="author" recuperarDatos={recuperarDatos} />
-        <InputComponent placeholder="Type" name="type" recuperarDatos={recuperarDatos} />
-        <InputComponent placeholder="Photo" name="photo" recuperarDatos={recuperarDatos} />
-        <InputComponent placeholder="cacharro" name="cachaarro" recuperarDatos={recuperarDatos} />
+      {arrayDatos.map((key) => (
+            <InputComponent
+              key={key}
+              placeholder={key} 
+              name={key}
+              recuperarDatos={recuperarDatos}
+            />
+          ))}
       </FormComponent>
     </div>
   </>

@@ -20,7 +20,7 @@ function App() {
   return <>
     <div className='flex min-h-screen flex-col justify-between'>
       <Header />
-      <main className='grow '>
+      <main className='grow flex '>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route element={<PrivateRoutes />} >

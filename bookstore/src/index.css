@@ -30,18 +30,18 @@ body {
 
 button {
   border: 1px solid transparent;
-  background-color: transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1.1rem;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+  background-color: #53b8fc;
+  color:white
 }
 
 button:hover {
-  background-color: #43667D;
-  color:white
+  background-color: #53b8fcd0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -54,7 +54,20 @@ button:hover {
   }
 
   .active{
-    color: black;
+    color: #484ec7;
     text-decoration: underline;
   }
+}
+
+@keyframes animacionTitulo {
+  0% {
+    color: white;
+  }
+  100% {
+    color: #53b8fc;
+  }
+}
+
+.titulo {
+  animation: animacionTitulo 1s linear;
 }

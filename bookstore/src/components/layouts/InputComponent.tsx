@@ -3,7 +3,7 @@ import { useState } from 'react'
 type InputProps = {
   placeholder: string
   name: string
-  recuperarDatos: ({ name, value } : { name: string, value: string | number }) => void
+  recuperarDatos: ( name: string, value: string | number ) => void
 }
 
 
@@ -22,7 +22,7 @@ function InputComponent(props: InputProps) {
         name={props.name}
         onFocus={() => setActivo(true)}
         onBlur={() => setActivo(false)}
-        onChange={(event) => props.recuperarDatos(event.target)} 
+        onChange={(event) => props.recuperarDatos(event.target.name, event.target.value)} 
       />
     </div>
   );
