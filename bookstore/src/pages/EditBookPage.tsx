@@ -1,35 +1,71 @@
+import Heading from "../components/layouts/HeadingComponent";
 import FormComponent from "../components/layouts/FormComponent";
 import InputComponent from "../components/layouts/InputComponent";
 import { useState } from "react";
 
 function EditBook() {
 
-  const [datos, setDatos] = useState({
-    title: '',
-    author: '',
-    type: '',
-    price: 0,
-    photo: ''
-  })
+  const [datos, setDatos] = useState<{
+    name: string
+    type: string
+    placeholder: string
+    value: string | number | boolean
+  }[]>([
+    {
+      name: 'title',
+      type: 'text',
+      placeholder: 'Titulo',
+      value: '',
+    },
+    {
+      name: 'author',
+      type: 'text',
+      placeholder: 'Autor',
+      value: '',
+    },
+    {
+      name: 'type',
+      type: 'text',
+      placeholder: 'Tipo',
+      value: '',
+    },
+    {
+      name: 'price',
+      type: 'number',
+      placeholder: 'Precio',
+      value: '',
+    },
+    {
+      name: 'photo',
+      type: 'text',
+      placeholder: 'URL de la foto',
+      value: '',
+    },
+  ])
 
-  const arrayDatos = Object.keys(datos)
 
-  function recuperarDatos(   name: string, value: string | number ) {
+  function recuperarDatos(   name: string, value: string | number | boolean ) {
+    console.log('recuperarDatos', { name, value })
 
-    setDatos({...datos, [name]: value}) 
+    const campo = datos.find((campo) => campo.name === name)
+
+    if (!campo) return
+      
+    campo.value = value
+    
+    setDatos(datos)
   }
 
   return <>
     <div className="w-full  flex flex-col  items-center  border-2 ">
-      <div className="w-full flex h-1/7 justify-center items-center " >
-      <h1 className="text-4xl text-[#53b8fc] titulo"  >EDIT BOOK </h1>
-      </div>
-      <FormComponent>
-      {arrayDatos.map((key) => (
+      <Heading level="h1" title="EDITA UN LIBRO" />
+      <FormComponent >
+      {datos.map(input => (
             <InputComponent
-              key={key}
-              placeholder={key} 
-              name={key}
+              key={input.name}
+              placeholder={input.placeholder} 
+              type={input.type}
+              name={input.name}
               recuperarDatos={recuperarDatos}
             />
           ))}

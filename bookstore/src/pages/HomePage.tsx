@@ -1,5 +1,5 @@
 
-import Heading from "../components/EjemploComponenteHeading";
+import Heading from "../components/layouts/HeadingComponent";
 
 function HomePage() {
   return <>

@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+
+// minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
 
 type InputProps = {
   placeholder: string
   name: string
-  recuperarDatos: ( name: string, value: string | number ) => void
+  type: string
+  recuperarDatos: ( name: string, value: string | number | boolean ) => void
 }
 
 
 function InputComponent(props: InputProps) {
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  
 
   const [activo, setActivo] = useState(false);
 
@@ -17,12 +23,17 @@ function InputComponent(props: InputProps) {
       <p>{activo ? `${props.placeholder}` : ''}</p>
       <input 
         className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-500 my-0.5"
-        type="text"
+        type={props.type}
         placeholder={props.placeholder}
         name={props.name}
+        ref={inputRef}
         onFocus={() => setActivo(true)}
         onBlur={() => setActivo(false)}
-        onChange={(event) => props.recuperarDatos(event.target.name, event.target.value)} 
+        onChange={(event) => props.recuperarDatos(event.target.name, event.target.value)
+/*             props.type === 'checkbox'
+            ? (event) => props.recuperarDatos(event.target.name, event.target.checked)
+            : (event) => props.recuperarDatos(event.target.name, event.target.value) */
+        } 
       />
     </div>
   );

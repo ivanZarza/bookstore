@@ -1,5 +1,5 @@
 import BookItem from '../components/BookItem'
-import { Book } from '../config/type' 
+import { Book } from '../configs/type' 
 
 function BooksPage() {
 
