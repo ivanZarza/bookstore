@@ -17,7 +17,7 @@ function Header() {
   return (
     <>
       <header className="w-full  sticky top-0 bg-transparent
-                          sm:flex sm:items-center sm:justify-between sm:bg-teal-300
+                          md:flex md:items-center md:justify-between md:bg-teal-300
                           ">
         <div className="flex justify-between bg-teal-300/90 backdrop-blur-lg">
           <Logo />
