@@ -12,7 +12,7 @@ function FormComponent(props: formProps) {
   return <>
     <form onSubmit={props.onSubmit} className="shadow-teal-300 inset-shadow-xs shadow-outline p-20 shadow-lg flex flex-col gap-3 ">
       {props.children}
-      <button  type="submit" >Enviar</button>
+      <button  type="submit"  >Enviar</button>
     </form>
   </>
 }

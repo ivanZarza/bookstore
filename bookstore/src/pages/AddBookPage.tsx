@@ -3,9 +3,16 @@ import FormComponent from "../components/layouts/FormComponent";
 import InputComponent from "../components/layouts/InputComponent";
 import { useState } from "react"
 
-function AddBook( ) {
+type inputLibroProps = {
+  name: string,
+  type: string,
+  placeholder: string,
+  value: string | number | boolean
+}
 
-  const [nuevoLibro, setNuevoLibro] = useState ([
+function AddBook() {
+
+  const [nuevoLibro, setNuevoLibro] = useState<inputLibroProps[]>([
     {
       name: 'title',
       type: 'text',
@@ -38,12 +45,34 @@ function AddBook( ) {
     },
   ])
 
+  function recuperarDatos(name: string, value: string | number | boolean) {
+
+    const objeto = nuevoLibro.find((objeto) => objeto.name === name)
+
+    if (!objeto) return
+
+    objeto.value = value
+
+    setNuevoLibro(nuevoLibro)
+  }
+
 
   return <>
-  <Heading level= "h1" title="AÑADE UN LIBRO"/>
-  <FormComponent>
 
-  </FormComponent>
+<div className="w-full  flex flex-col  items-center  border-2 ">
+    <Heading level="h1" title="AÑADE UN LIBRO" />
+    <FormComponent>
+      {nuevoLibro.map(input => (
+        <InputComponent
+          key={input.name}
+          placeholder={input.placeholder}
+          type={input.type}
+          name={input.name}
+          recuperarDatos={recuperarDatos}
+        />
+      ))}
+    </FormComponent>
+    </div>
   </>
 };
 

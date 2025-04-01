@@ -3,14 +3,16 @@ import FormComponent from "../components/layouts/FormComponent";
 import InputComponent from "../components/layouts/InputComponent";
 import { useState } from "react";
 
+type inputLibroProps = {
+  name: string,
+  type: string,
+  placeholder: string,
+  value: string | number | boolean
+}
+
 function EditBook() {
 
-  const [datos, setDatos] = useState<{
-    name: string
-    type: string
-    placeholder: string
-    value: string | number | boolean
-  }[]>([
+  const [datos, setDatos] = useState<inputLibroProps[]>([
     {
       name: 'title',
       type: 'text',

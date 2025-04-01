@@ -36,35 +36,28 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
-  background-color: #53b8fc;
+  background-color: #646cff;
   color:white
 }
 
 button:hover {
-  background-color: #53b8fcd0;
+  background-color: #535bf2;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
+
 
   .active{
     color: #484ec7;
     text-decoration: underline;
   }
-}
+
 
 @keyframes animacionTitulo {
   0% {
     color: white;
   }
   100% {
-    color: #53b8fc;
+    color: #484ec7;
   }
 }
 

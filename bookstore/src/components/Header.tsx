@@ -21,13 +21,13 @@ function Header() {
                           ">
         <div className="flex justify-between bg-teal-300/90 backdrop-blur-lg">
           <Logo />
-          <button onClick={() => setisOpenSidebar(!isOpenSidebar)} className="sm:hidden "><GiHamburgerMenu size={52}/>
+          <button onClick={() => setisOpenSidebar(!isOpenSidebar)} className="md:hidden "><GiHamburgerMenu size={52}/>
           </button>
         </div>
-        <div className="hidden sm:flex ">
+        <div className="hidden md:flex ">
           <Menu /* isOpenSidebar={isOpenSidebar} */ />
         </div>
-        <div className="sm:hidden flex items-start ">
+        <div className="md:hidden ">
           {isOpenSidebar && <SideBar /* isOpenSidebar={isOpenSidebar}  *//>}
         </div>
       </header>
