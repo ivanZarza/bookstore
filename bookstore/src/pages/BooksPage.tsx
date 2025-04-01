@@ -34,7 +34,7 @@ function BooksPage() {
 
   const listBooks = [book,book2,book3]
   return (
-    <div className='w-full flex flex-col items-center gap-5 border-2'>
+    <div className='w-full flex flex-col items-center border-2'>
       <Heading level='h1' title='TUS LIBROS'/>
       <ul className='flex flex-col gap-6 justify-center items-center
                       sm:grid sm:grid-cols-1 sm:gap-8
