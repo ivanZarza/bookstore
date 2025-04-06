@@ -1,17 +1,32 @@
 import Heading from "../components/layouts/HeadingComponent";
 import FormComponentZod from "../components/layouts/FormComponentZod";
 import InputComponentZod from "../components/layouts/InputComponentZod";
-import { useState } from "react"
+/* import { useState } from "react" */
+import { useForm } from "react-hook-form"
 
-type inputLibroProps = {
+type FormValues = {
+  title: string
+  author: string
+  type: string
+  price: number
+  photo: string
+}
+
+/* type inputLibroProps = {
   name: string,
   type: string,
   placeholder: string,
   value: string | number | boolean
-}
+} */
 
 function AddBook() {
 
+  const { register, handleSubmit } = useForm<FormValues>()
+
+  function onSubmit(data:FormValues) {
+    console.log('datos', data);
+  }
+/* 
   const [nuevoLibro, setNuevoLibro] = useState<inputLibroProps[]>([
     {
       name: 'title',
@@ -43,35 +58,40 @@ function AddBook() {
       placeholder: 'URL de la foto',
       value: '',
     },
-  ])
-
-  function recuperarDatos(name: string, value: string | number | boolean) {
-
-    const objeto = nuevoLibro.find((objeto) => objeto.name === name)
-
-    if (!objeto) return
-
-    objeto.value = value
-
-    setNuevoLibro(nuevoLibro)
-  }
-
+  ]) */
 
   return <>
 
-<div className="w-full  flex flex-col  items-center  border-2 ">
-    <Heading level="h1" title="AÑADE UN LIBRO" />
-    <FormComponentZod>
-      {nuevoLibro.map(input => (
+    <div className="w-full  flex flex-col  items-center  border-2 ">
+      <Heading level="h1" title="AÑADE UN LIBRO" />
+      <FormComponentZod onSubmit={handleSubmit(onSubmit)}>
         <InputComponentZod
-          key={input.name}
-          placeholder={input.placeholder}
-          type={input.type}
-          name={input.name}
-          recuperarDatos={recuperarDatos}
+          placeholder='Titulo'
+          type='text'
+          {...register('title')}
         />
-      ))}
-    </FormComponentZod>
+        <InputComponentZod
+          placeholder='Author'
+          type='text'
+          {...register('author')}
+        />
+        <InputComponentZod
+          placeholder='Tipo'
+          type='text'
+          {...register('type')}
+        />
+        <InputComponentZod
+          placeholder='Precio'
+          type='number'
+          {...register('price')}
+        />
+        <InputComponentZod
+          placeholder='Url de la foto'
+          type='text'
+          {...register('photo')}
+        />
+
+      </FormComponentZod>
     </div>
   </>
 };
