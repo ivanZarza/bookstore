@@ -1,0 +1,34 @@
+import { forwardRef } from 'react'
+
+// minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
+
+type InputProps = {
+  placeholder: string
+  name: string
+  type: string
+}
+
+
+const InputComponentReactForm = forwardRef<HTMLInputElement, InputProps>(function InputComponentReactForm(props: InputProps, ref) {
+
+
+
+  return (
+    <div className="w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none bg-gray-200 border-teal-500  ">
+      <label>{props.placeholder}</label>
+      <input
+      id={props.name}
+        className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-600 "
+        ref={ref}
+        type={props.type}
+        placeholder={props.placeholder}
+        name={props.name}
+      />
+
+{/*       {!valido && <p className='text-red-600'>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
+ */}
+    </div>
+  );
+})
+
+export default InputComponentReactForm;

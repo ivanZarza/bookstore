@@ -1,6 +1,6 @@
 import Heading from "../components/layouts/HeadingComponent";
-import FormComponent from "../components/layouts/FormComponent";
-import InputComponent from "../components/layouts/InputComponent";
+import FormComponentZod from "../components/layouts/FormComponentZod";
+import InputComponentZod from "../components/layouts/InputComponentZod";
 import { useState } from "react"
 
 type inputLibroProps = {
@@ -61,9 +61,9 @@ function AddBook() {
 
 <div className="w-full  flex flex-col  items-center  border-2 ">
     <Heading level="h1" title="AÑADE UN LIBRO" />
-    <FormComponent>
+    <FormComponentZod>
       {nuevoLibro.map(input => (
-        <InputComponent
+        <InputComponentZod
           key={input.name}
           placeholder={input.placeholder}
           type={input.type}
@@ -71,7 +71,7 @@ function AddBook() {
           recuperarDatos={recuperarDatos}
         />
       ))}
-    </FormComponent>
+    </FormComponentZod>
     </div>
   </>
 };
