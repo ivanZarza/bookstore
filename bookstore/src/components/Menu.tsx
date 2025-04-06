@@ -18,7 +18,7 @@ function Menu(/* props:MenuProps */) {
   const headerClasses = 'clases de tailwind para menu en header';
   const clases = `${commoclases} ${isOpenSidebar ? sideBarClasses: headerClasses}` //TERNARIO PARA DECIDIR QUE CLASES SE PASAN */
 
-  const user = "hola"
+  const user = ""
 
   return (
     <>
