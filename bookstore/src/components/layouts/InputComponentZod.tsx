@@ -11,13 +11,13 @@ export type FormValues = {
 }
 
 type InputProps = {
-  name: keyof FormValues
+  name: string
   placeholder: string
   type: string
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 
-const InputComponentZod = forwardRef<HTMLInputElement, InputProps>(function InputComponentZod(props: InputProps, ref) {
+const InputComponentZod = forwardRef(function InputComponentZod(props: InputProps, ref: React.ForwardedRef<HTMLInputElement>) {
 
   const [activo, setActivo] = useState<boolean>(false);
 
@@ -32,7 +32,6 @@ const InputComponentZod = forwardRef<HTMLInputElement, InputProps>(function Inpu
         placeholder={props.placeholder}
         onFocus={() => setActivo(true)}
         onBlur={() => setActivo(false)}
-
         ref={ref}
       /*         onChange={(event) => { */
       /*        props.recuperarDatos(event.target.name, event.target.value);

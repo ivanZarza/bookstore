@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { FieldError, UseFormRegister } from 'react-hook-form';
-
+/* import { FieldError, UseFormRegister } from 'react-hook-form';
+ */
 // minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
 
 type FormValues = {
@@ -13,22 +13,21 @@ type FormValues = {
 }
 
 type InputProps = {
-  name: keyof FormValues
   placeholder: string
   type: string
-  mensajeError: string
-  register: UseFormRegister<FormValues>
-  validators?: {
+/*   mensajeError: string */
+/*   register: UseFormRegister<FormValues> */
+/*   validators?: {
     maxLength?: { value: number; message: string }
     minLength?: { value: number; message: string }
     required?: { value: boolean; message: string }
     validate?: (value: string) => boolean | string
   }
   error?: FieldError; 
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} */}& React.InputHTMLAttributes<HTMLInputElement>; 
 
 
-const InputComponentReactForm = forwardRef<HTMLInputElement, InputProps>(function InputComponentReactForm(props: InputProps, ref) {
+const InputComponentReactForm = forwardRef<HTMLInputElement, InputProps>(function InputComponentReactForm(props: InputProps, ref: React.Ref<HTMLInputElement>) {
 
   return (
     <div className="w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none bg-gray-200 border-teal-500  ">
