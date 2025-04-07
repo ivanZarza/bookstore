@@ -1,5 +1,4 @@
 import { useState, forwardRef } from 'react'
-import { UseFormRegister } from 'react-hook-form';
 
 // minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
 
@@ -15,7 +14,6 @@ type InputProps = {
   name: keyof FormValues
   placeholder: string
   type: string
-  register?: UseFormRegister<FormValues>
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 
@@ -33,11 +31,9 @@ const InputComponentZod = forwardRef<HTMLInputElement, InputProps>(function Inpu
         type={props.type}
         placeholder={props.placeholder}
         onFocus={() => setActivo(true)}
-        // onBlur={() => setActivo(false)}
-        {...props.register?.(props.name)}
-        ref={
-          ref
-        }
+        onBlur={() => setActivo(false)}
+
+        ref={ref}
       /*         onChange={(event) => { */
       /*        props.recuperarDatos(event.target.name, event.target.value);
                 props.validarDatos(event.target.name, event.target.value);  */

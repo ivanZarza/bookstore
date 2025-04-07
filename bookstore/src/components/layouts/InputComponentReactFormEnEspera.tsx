@@ -17,7 +17,7 @@ type InputProps = {
   placeholder: string
   type: string
   mensajeError: string
-  register: UseFormRegister<FormValues>
+  register?: UseFormRegister<FormValues>
   validators?: {
     maxLength?: { value: number; message: string }
     minLength?: { value: number; message: string }
@@ -38,7 +38,8 @@ const InputComponentReactForm = forwardRef<HTMLInputElement, InputProps>(functio
         ref={ref}
         type={props.type}
         placeholder={props.placeholder}
-        
+        name={props.name}
+        {...props.register?.(props.name, props.validators ?? {})}
       />
 
 {/*       {!valido && <p className='text-red-600'>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
