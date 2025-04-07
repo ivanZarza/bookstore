@@ -1,19 +1,25 @@
 import { useState, forwardRef } from 'react'
+import { UseFormRegister } from 'react-hook-form';
 
 // minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
 
+export type FormValues = {
+  title: string
+  author: string
+  type: string
+  price: number
+  photo: string
+}
+
 type InputProps = {
+  name: keyof FormValues
   placeholder: string
   type: string
-/*   pattern: string
-  error: { [key: string]: boolean }
-  recuperarDatos: (name: string, value: string | number | boolean) => void
-  validarDatos: (name: string, value: string | number | boolean) => void
-  generarMensajeError: (name: string, value: string | number | boolean | undefined) => string */
-}& React.InputHTMLAttributes<HTMLInputElement>;
+  register?: UseFormRegister<FormValues>
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 
-const InputComponentZod =forwardRef<HTMLInputElement, InputProps> (function InputComponentZod(props: InputProps, ref) {
+const InputComponentZod = forwardRef<HTMLInputElement, InputProps>(function InputComponentZod(props: InputProps, ref) {
 
   const [activo, setActivo] = useState<boolean>(false);
 
@@ -24,19 +30,22 @@ const InputComponentZod =forwardRef<HTMLInputElement, InputProps> (function Inpu
       <label>{activo ? `${props.placeholder}` : ''}</label>
       <input
         className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-600 "
-        ref={ref}
         type={props.type}
         placeholder={props.placeholder}
         onFocus={() => setActivo(true)}
-        onBlur={() => setActivo(false)}
-/*         onChange={(event) => { */
-/*        props.recuperarDatos(event.target.name, event.target.value);
-          props.validarDatos(event.target.name, event.target.value);  */
-/*         }
-        } */
+        // onBlur={() => setActivo(false)}
+        {...props.register?.(props.name)}
+        ref={
+          ref
+        }
+      /*         onChange={(event) => { */
+      /*        props.recuperarDatos(event.target.name, event.target.value);
+                props.validarDatos(event.target.name, event.target.value);  */
+      /*         }
+              } */
       />
 
-{/*       {!valido && <p className='text-red-600'>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>} */}
+      {/*       {!valido && <p className='text-red-600'>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>} */}
 
     </div>
   );

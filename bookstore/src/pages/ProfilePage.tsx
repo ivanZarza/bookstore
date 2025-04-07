@@ -1,8 +1,6 @@
 import Heading from "../components/layouts/HeadingComponent";
 import FormComponentReactForm from "../components/layouts/FormComponentReactForm";
 import InputComponentReactForm from "../components/layouts/InputComponentReactForm";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 
 type FormValues = {
@@ -18,57 +16,56 @@ type inputLibroProps = {
   name: keyof FormValues,
   type: string,
   placeholder: string,
-  value: string | number | boolean
+  mensajeError: string,
 }
 
 
 
 function ProfilePage() {
 
-  const { register, handleSubmit } = useForm<FormValues>()
 
   function onSubmit(data:FormValues) {
     console.log('data', data);
   }
 
-  const [datosUsuario, setDatosUsuario] = useState<inputLibroProps[]>([
+  const datosUsuario:inputLibroProps[] = [
     {
       name: 'name',
       type: 'text',
       placeholder: 'Nombre',
-      value: '',
+      mensajeError:'El nombre no cumple con los requisitos',
     },
     {
       name: 'lastName',
       type: 'text',
       placeholder: 'Apellidos',
-      value: '',
+      mensajeError:'Los apellidos cumplen con los requisitos',
     },
     {
       name: 'email',
       type: 'email',
       placeholder: 'Correo electronico',
-      value: '',
+      mensajeError:'El correo no es valido o cumple con los requisitos',
     },
     {
       name: 'photo',
       type: 'text',
       placeholder: 'URL de la foto',
-      value: '',
+      mensajeError:'La URL no es valida o cumple con los requisitos',
     },
     {
       name: 'password1',
       type: 'password',
       placeholder: 'Contraseña',
-      value: '',
+      mensajeError:'El password no cumple los requisitos',
     },
     {
       name: 'password2',
       type: 'password',
       placeholder: 'Repite la contraseña',
-      value: '',
+      mensajeError:'El password no coincide o no cumple los requisitos',
     },
-  ])
+  ]
 
   
 
@@ -76,15 +73,15 @@ function ProfilePage() {
   return <>
     <div className="w-full  flex flex-col  items-center  border-2 ">
       <Heading level="h1" title="TU PAGINA" />
-      <FormComponentReactForm onSubmit={handleSubmit(onSubmit)}>
+      <FormComponentReactForm onSubmit={onSubmit}>
         {
           datosUsuario.map((input) => (
             <InputComponentReactForm
               key={input.name}
               placeholder={input.placeholder}
               type={input.type}
-              {...register(input.name)}
               name={input.name}
+              mensajeError={input.mensajeError}
             />
           ))
         }
