@@ -32,7 +32,9 @@ function FormComponentReactForm(props: InputProps) {
 
   const [activo, setActivo] = useState<boolean>(false);
 
-  const invalido = props.errors[props.name] || false;
+  const invalido = props.errors[props.name]
+
+
   return (
     <div className={`w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none ${!invalido ? "bg-gray-200 border-teal-500 " : "bg-red-100 border-red-600"}`}>
       <label>{activo == true ? `${props.placeholder}` : ''}</label>
