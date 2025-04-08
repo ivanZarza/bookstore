@@ -1,41 +1,60 @@
-import { forwardRef } from 'react'
-import { FieldError, UseFormRegister } from 'react-hook-form';
-// minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
+import { useState } from 'react'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 
+type FormValues = {
+  name: string
+  lastName: string
+  email: string
+  photo: string
+  password1: string
+  password2: string
+}
 
 type InputProps = {
+  name: 'name' | 'lastName' | 'email' | 'photo' | 'password1' | 'password2'
   placeholder: string
   type: string
-/*   mensajeError: string */
-/*   register: UseFormRegister<FormValues> */
-register: UseFormRegister<FormValues>
+  register?: UseFormRegister<FormValues>
+  validators?: {
     maxLength?: { value: number; message: string }
     minLength?: { value: number; message: string }
+    pattern?: { value: RegExp; message: string }
     required?: { value: boolean; message: string }
     validate?: (value: string) => boolean | string
   }
-  error?: FieldError; 
-} */}& React.InputHTMLAttributes<HTMLInputElement>; 
+  errors: FieldErrors<FormValues>
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 
-const InputComponentReactForm = forwardRef<HTMLInputElement, InputProps>(function InputComponentReactForm(props: InputProps, ref: React.Ref<HTMLInputElement>) {
 
+function FormComponentReactForm(props: InputProps) {
+
+  const [activo, setActivo] = useState<boolean>(false);
+
+  const invalido = props.errors[props.name] || false;
   return (
-    <div className="w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none bg-gray-200 border-teal-500  ">
-      <label>{props.placeholder}</label>
+    <div className={`w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none ${!invalido ? "bg-gray-200 border-teal-500 " : "bg-red-100 border-red-600"}`}>
+      <label>{activo == true ? `${props.placeholder}` : ''}</label>
       <input
         className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-600 "
-        ref={ref}
         type={props.type}
         placeholder={props.placeholder}
-        {...props.register(props.name)}
+
+        onChange={(e) => {
+        props.register?.(props.name, props.validators)?.onChange(e);
+        }}
+        {...props.register?.(props.name, props.validators)}
+        onFocus={() => setActivo(true)}
+        onBlur={() => {
+          console.log("onBlur disparado");
+          setActivo(false);
+        }}
       />
 
-{/*       {!valido && <p className='text-red-600'>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
- */}
+      {invalido && <p className="text-red-500">{String(props.errors[props.name]?.message)}</p>}
     </div>
   );
-})
+}
 
-export default InputComponentReactForm;
+export default FormComponentReactForm;
