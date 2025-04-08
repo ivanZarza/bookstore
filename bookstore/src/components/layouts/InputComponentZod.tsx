@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react'
+import { /* useState, */ forwardRef } from 'react'
 
 // minuto 2:15:00 de la clase FOrmularios 1 explica el checbox, en vez de validar al recibir, valide al enviar, a esperas de que funcione
 
@@ -19,19 +19,19 @@ type InputProps = {
 
 const InputComponentZod = forwardRef(function InputComponentZod(props: InputProps, ref: React.ForwardedRef<HTMLInputElement>) {
 
-  const [activo, setActivo] = useState<boolean>(false);
+/*   const [activo, setActivo] = useState<boolean>(false); */
 
-/*   const valido = !props.error[props.name] || false; */ const valido = true
+/* /*   const valido = !props.error[props.name] || false; */ const valido = true 
 
   return (
     <div className={`w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none ${valido ? "bg-gray-200 border-teal-500 " : "bg-red-100 border-red-600"}`}>
-      <label>{activo ? `${props.placeholder}` : ''}</label>
+{/*       <label>{activo ? `${props.placeholder}` : ''}</label> */}
       <input
         className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-600 "
         type={props.type}
         placeholder={props.placeholder}
-        onFocus={() => setActivo(true)}
-        onBlur={() => setActivo(false)}
+/*         onFocus={() => setActivo(true)}
+        onBlur={() => setActivo(false)} */
         ref={ref}
       /*         onChange={(event) => { */
       /*        props.recuperarDatos(event.target.name, event.target.value);

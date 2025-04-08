@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Heading from "../components/layouts/HeadingComponent";
 import InputComponentReactForm from "../components/layouts/InputComponentReactForm";
 import { useForm } from "react-hook-form";
@@ -113,32 +114,32 @@ function ProfilePage() {
           className="shadow-teal-300 inset-shadow-xs shadow-outline p-20 shadow-lg flex flex-col gap-3 bg-gray-100"
           onSubmit={handleSubmit(onSubmit)}
         >
-            <InputComponentReactForm
+            <input className="h-10 placeholder:text-2xl focus:outline-none text-2xl placeholder-gray-600 "
               placeholder='Nombre'
               type='text'
               {...register('name')}
             />
-            <InputComponentReactForm
+            <input
               placeholder='Apellidos'
               type='text'
               {...register('lastName')}
               />
-            <InputComponentReactForm
+            <input
               placeholder='Correo electrónico'
               type='email'
               {...register('email')}
             />
-            <InputComponentReactForm
+            <input
               placeholder='URL de la foto'
               type='text'
               {...register('photo')}
             />
-            <InputComponentReactForm
+            <input
               placeholder='Contraseña'
               type='password'
               {...register('password1')}
             />
-            <InputComponentReactForm
+            <input
               placeholder='Repite la contraseña'
               type='password'
               {...register('password2')}
@@ -149,7 +150,7 @@ function ProfilePage() {
         </form>
       </div>
     </>
-  );
+  )
 }
 
 export default ProfilePage;
