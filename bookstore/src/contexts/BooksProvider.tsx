@@ -7,23 +7,12 @@ type BookContextType = {
   getBooks: ({ id_user, id_book }: { id_user?: number | null; id_book?: number | null; }) => Promise<void>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addBook: (id_user: number, book: Book) => Promise<any>;
-  getOneBook: ({ id_user, id_book }: { id_user?: number | null; id_book?: number | null; }) => Promise<void>;
-  oneBook: Book;
 };
 
 const BooksContext = createContext<BookContextType>({
   books: [],
   getBooks: async () => {},
   addBook: async () => {},
-  getOneBook: async () => {},
-  oneBook: {
-    id_user: 0,
-    title: "",
-    author: "",
-    photo: "",
-    price: 0,
-    type: "Tapa dura"
-  }
 });
 
 
@@ -39,15 +28,6 @@ const {
 function BooksProvider(props: BooksProviderProps) {
 
   const { children } = props;
-
-  const [oneBook, setOneBook] = useState<Book>({
-    id_user: 0,
-    title: "",
-    author: "",
-    photo: "",
-    price: 0,
-    type: "Tapa dura"
-  })
 
   const [books, setBooks] = useState([]);
 
@@ -78,32 +58,6 @@ function BooksProvider(props: BooksProviderProps) {
     }
   }
 
-  async function getOneBook({ id_user, id_book }: { id_user?: number | null; id_book?: number | null; } = {}) {
-    const url = new URL(`${VITE_API_ORIGIN}/books`);
-    try {
-      if (id_user) {
-        url.searchParams.append('id_user', String(id_user));
-      }
-      if (id_book) {
-        url.searchParams.append('id_book', String(id_book));
-      }
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
-      if (!response.ok) {
-        throw new Error('Error en la solicitud');
-      }
-      const data = await response.json();
-      setOneBook(data.data)
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-
     async function addBook(id_user:number, book: Book) {
       const bookConUsuario = {
         ...book,
@@ -124,7 +78,7 @@ function BooksProvider(props: BooksProviderProps) {
 
 
   return (
-    <BooksContext.Provider value={{ books, getBooks, addBook, getOneBook, oneBook }}>
+    <BooksContext.Provider value={{ books, getBooks, addBook }}>
       {children}
     </BooksContext.Provider>
   )

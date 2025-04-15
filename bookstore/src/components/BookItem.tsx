@@ -43,7 +43,7 @@ function BookItem(props: BookItemsProps) {
           <div className="w-full flex justify-between items-center p-2 text-lg">
           <p>{book.price}€</p>
             <div className="flex justify-between items-center gap-1" >
-            <Link to={`/bookPage/books/${book.id_book}`} >
+            <Link to={`/bookPage/books/${book.id_book}`}  state={book}  >
             <button onClick={handleEditBook} className='bg-indigo-700 text-emerald-800' ><RiEditLine size={15}/></button>
               </Link>
             <button onClick={handleDeleteBook} className='bg-indigo-100 text-red-500'><TbTrashFilled size={15}/></button>
