@@ -4,6 +4,7 @@ import { RiEditLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 
+
 type BookItemsProps={
   book: Book 
 }
@@ -13,10 +14,6 @@ function BookItem(props: BookItemsProps) {
   const { book } = props;
 
 
-
-  function handleEditBook() {
-    console.log('Libro editado');
-  }
 
   function handleDeleteBook() {
     console.log('Libro borrado');
@@ -44,9 +41,11 @@ function BookItem(props: BookItemsProps) {
           <p>{book.price}€</p>
             <div className="flex justify-between items-center gap-1" >
             <Link to={`/bookPage/books/${book.id_book}`}  state={book}  >
-            <button onClick={handleEditBook} className='bg-indigo-700 text-emerald-800' ><RiEditLine size={15}/></button>
+            <button  className='bg-indigo-700 text-emerald-800' ><RiEditLine size={15}/></button>
               </Link>
+              <Link to={`/bookPage/books/delete/${book.id_book}`} state={book} >
             <button onClick={handleDeleteBook} className='bg-indigo-100 text-red-500'><TbTrashFilled size={15}/></button>
+              </Link>
             </div>
           </div>
       </section>

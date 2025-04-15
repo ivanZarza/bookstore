@@ -15,6 +15,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import { Routes, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import DeleteBookPage from './pages/DeleteBookPage';
 
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/bookPage" element={<BooksPage />} />
             <Route path="/addbook" element={<AddBook />} />
             <Route path="/bookPage/books/:id_book" element={<EditBook />} />
+            <Route path="/bookPage/books/delete/:id_book" element={<DeleteBookPage />} />
             <Route path="/editbook" element={<EditBook />} />
             <Route path="/logout" element={<Logout />} />
             <Route path='*' element={<NotFoundPage />} />
