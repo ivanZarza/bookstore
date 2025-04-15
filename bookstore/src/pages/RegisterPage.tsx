@@ -2,6 +2,9 @@ import Heading from "../components/layouts/HeadingComponent";
 import FormComponent from "../components/layouts/FormComponent";
 import InputComponent from "../components/layouts/InputComponent";
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 type inputLibroProps = {
   name: string,
@@ -11,7 +14,12 @@ type inputLibroProps = {
   pattern: string
 }
 
+const {
+  VITE_API_ORIGIN
+} = import.meta.env
+
 function RegisterPage() {
+  const navigate = useNavigate()
 
   const [datosRegistro, setDatosRegistro] = useState<inputLibroProps[]>([
     {
@@ -22,11 +30,11 @@ function RegisterPage() {
       pattern: '^.{4,8}$',
     },
     {
-      name: 'lastName',
+      name: 'last_name',
       type: 'text',
       placeholder: 'Apellidos',
       value: '',
-      pattern: '^.{4,8}$',
+      pattern: '^.{4,20}$',
     },
     {
       name: 'email',
@@ -40,7 +48,7 @@ function RegisterPage() {
       type: 'text',
       placeholder: 'URL de la foto',
       value: '',
-      pattern: '^.{4,8}$',
+      pattern: '^.{4,200}$',
     },
     {
       name: 'password1',
@@ -60,7 +68,7 @@ function RegisterPage() {
 
   const [error, setError] = useState<{ [name: string]: boolean }>({
     name: false,
-    lastName: false,
+    last_name: false,
     email: false,
     photo: false,
     password: false,
@@ -93,7 +101,7 @@ function RegisterPage() {
         return 'El nombre debe tener entre 4 y 8 caracteres';
       }
 
-      case 'lastName': {
+      case 'last_name': {
         if (!value) return 'El apellido es obligatorio';
         return 'El apellido debe tener entre 4 y 8 caracteres';
       }
@@ -126,11 +134,41 @@ function RegisterPage() {
     return '';
   }
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const nuevoUsuario = {
+      name: datosRegistro[0].value,
+      last_name: datosRegistro[1].value,
+      email: datosRegistro[2].value,
+      photo: datosRegistro[3].value,
+      password: datosRegistro[4].value,
+    };
+    console.log(nuevoUsuario)
+    try {
+      const response = await axios.post(`${VITE_API_ORIGIN}/register`, nuevoUsuario);
+      console.log(response);
+      if (response.status === 200) {
+        toast.success("Usuario registrado correctamente");
+        navigate("/login")
+      } else {
+        toast.error("Error al registrar el usuario");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error en la solicitud:", error.message);
+        toast.error("Error en la solicitud");
+      } else {
+        console.error("Error inesperado:", error);
+        toast.error("Error inesperado");
+      }
+    }
+  }
+
 
   return <>
     <div className="w-full  flex flex-col  items-center  border-2" >
       <Heading level="h1" title="RELLENA TUS DATOS" />
-      <FormComponent>
+      <FormComponent onSubmit={handleSubmit} >
         {
           datosRegistro.map((input) => (
             <InputComponent

@@ -3,6 +3,10 @@ import InputComponentZod from "../components/layouts/InputComponentZod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import bookSchema from '../configs/SchemasZod';
+import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { BooksContext } from "../contexts/BooksProvider";
+import { UserContext } from "../contexts/UserProvider";
 
 type FormValues = {
   title: string;
@@ -17,7 +21,21 @@ type inputLibroProps = {
   type: string;
   placeholder: string;
 };
+
 function EditBook() {
+
+  const { user } = useContext(UserContext);
+  console.log('user', user);
+  const { books, getBooks } = useContext(BooksContext);
+  console.log(books);
+
+  const params = useParams();
+  console.log('params', params);
+  const id_book = params.id_book ? Number(params.id_book) : undefined;
+
+  useEffect(() => {
+    getBooks({ id_user: user?.id_user, id_book: id_book })
+  },[getBooks, user, id_book])
 
   const { register, handleSubmit, formState: { errors }, } = useForm<FormValues>({
     mode: "onChange",

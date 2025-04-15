@@ -3,6 +3,12 @@ import InputComponentZod from "../components/layouts/InputComponentZod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import bookSchema from '../configs/SchemasZod';
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserProvider";
+import { BooksContext } from "../contexts/BooksProvider";
+import { toast } from "react-toastify";
+import { Book } from "../configs/type";
+
 
 type FormValues = {
   title: string;
@@ -18,17 +24,60 @@ type inputLibroProps = {
   placeholder: string;
 };
 
-function AddBook() {
+/* async function newBook(book: FormValues, id_user: number) {
+  const bookConUsuario = {
+    id_user: id_user, 
+    ...book,
+  };
+  console.log('bookConUsuario', bookConUsuario);
+  const url= await fetch('https://api-books-xi.vercel.app/books', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({book: bookConUsuario})
+  });
+  if (!url.ok) {
+    throw new Error('Error en la solicitud');
+  }
+  const response = await url
+  const data = await response.json();
+  console.log('respuesta', data);
+} */
 
-  const { register, handleSubmit, formState: { errors }, } = useForm<FormValues>({
+function AddBook() {
+  const { user } = useContext(UserContext);
+  const { addBook } = useContext(BooksContext);
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>({
     mode: "onChange",
     resolver:zodResolver(bookSchema)
   })
 
 
-  function onSubmit(data: FormValues) {
+  async function onSubmit(data: FormValues) {
     console.log('datos', data);
+    const book: Book = {
+      id_user: user?.id_user as number,
+      ...data,
+    };
+    console.log('book', book);
+    try {
+      const respuesta =  await addBook(user?.id_user as number, book);
+      console.log('respuesta', respuesta);
+      if(respuesta.ok===true){
+      reset();
+      toast.success('Libro añadido correctamente');
+    } else {
+      toast.error('No se pudo añadir el libro')
+    }
+    } catch (error) {
+      console.error('Error al enviar el libro:', error);
+      toast.error('Error al enviar el libro');
+    }
   }
+
 
   const datosUsuario: inputLibroProps[] = [
     {

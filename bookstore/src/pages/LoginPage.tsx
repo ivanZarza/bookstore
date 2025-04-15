@@ -1,7 +1,11 @@
 import Heading from "../components/layouts/HeadingComponent";
 import FormComponent from "../components/layouts/FormComponent";
 import InputComponent from "../components/layouts/InputComponent";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import axios from "axios";
+import { UserContext } from "../contexts/UserProvider";
+import { toast } from "react-toastify";
+
 
 type inputLibroProps = {
   name: string,
@@ -10,6 +14,10 @@ type inputLibroProps = {
   value: string | number | boolean,
   pattern: string,
 }
+
+const {
+  VITE_API_ORIGIN
+} = import.meta.env
 
 function LoginPage() {
 
@@ -34,6 +42,8 @@ function LoginPage() {
     email: false,
     password: false,
   });
+
+  const { user, logIn } = useContext(UserContext);
 
   function recuperarDatos(name: string, value: string | number | boolean) {
     const objeto = datosLogin.find((objeto) => objeto.name === name)
@@ -75,26 +85,46 @@ function LoginPage() {
     return '';
   }
 
-    return <>
-      <div className="w-full  flex flex-col  items-center  border-2 ">
-        <Heading level="h1" title="INTRODUCE TUS DATOS" />
-        <FormComponent >
-          {datosLogin.map(input => (
-            <InputComponent
-              key={input.name}
-              placeholder={input.placeholder}
-              type={input.type}
-              name={input.name}
-              pattern={input.pattern}
-              error={error}
-              validarDatos={validarDatos}
-              recuperarDatos={recuperarDatos}
-              generarMensajeError={generarMensajeError}
-            />
-          ))}
-        </FormComponent>
-      </div>
-    </>
-  };
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const datosUsuario = {
+      email: datosLogin[0].value,
+      password: datosLogin[1].value,
+    };
+    console.log(datosUsuario)
 
-  export default LoginPage;
+    const response = await axios.post(`${VITE_API_ORIGIN}/login`, datosUsuario,)
+    logIn(response.data.data[0])
+    if (response.data.ok) {
+      toast.success('Inicio de sesión exitoso');
+    } else {
+      toast.error('Error en el inicio de sesión');
+    }
+    console.log(response.data.data[0]);
+    console.log(response.status);
+    console.log(user);
+  }
+
+  return <>
+    <div className="w-full  flex flex-col  items-center  border-2 ">
+      <Heading level="h1" title="INTRODUCE TUS DATOS" />
+      <FormComponent onSubmit={handleSubmit} >
+        {datosLogin.map(input => (
+          <InputComponent
+            key={input.name}
+            placeholder={input.placeholder}
+            type={input.type}
+            name={input.name}
+            pattern={input.pattern}
+            error={error}
+            validarDatos={validarDatos}
+            recuperarDatos={recuperarDatos}
+            generarMensajeError={generarMensajeError}
+          />
+        ))}
+      </FormComponent>
+    </div>
+  </>
+};
+
+export default LoginPage;
