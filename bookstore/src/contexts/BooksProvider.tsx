@@ -8,7 +8,7 @@ type BookContextType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addBook: (id_user: number, book: Book) => Promise<any>;
   getOneBook: ({ id_user, id_book }: { id_user?: number | null; id_book?: number | null; }) => Promise<void>;
-  book: Book;
+  oneBook: Book;
 };
 
 const BooksContext = createContext<BookContextType>({
@@ -16,7 +16,7 @@ const BooksContext = createContext<BookContextType>({
   getBooks: async () => {},
   addBook: async () => {},
   getOneBook: async () => {},
-  book: {
+  oneBook: {
     id_user: 0,
     title: "",
     author: "",
@@ -40,7 +40,7 @@ function BooksProvider(props: BooksProviderProps) {
 
   const { children } = props;
 
-  const [book, setBook] = useState<Book>({
+  const [oneBook, setOneBook] = useState<Book>({
     id_user: 0,
     title: "",
     author: "",
@@ -98,7 +98,7 @@ function BooksProvider(props: BooksProviderProps) {
         throw new Error('Error en la solicitud');
       }
       const data = await response.json();
-      setBook(data.data)
+      setOneBook(data.data)
     } catch (error) {
       console.error('Error:', error);
     }
@@ -124,7 +124,7 @@ function BooksProvider(props: BooksProviderProps) {
 
 
   return (
-    <BooksContext.Provider value={{ books, getBooks, addBook, getOneBook, book }}>
+    <BooksContext.Provider value={{ books, getBooks, addBook, getOneBook, oneBook }}>
       {children}
     </BooksContext.Provider>
   )

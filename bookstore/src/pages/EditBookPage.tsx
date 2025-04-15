@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Heading from "../components/layouts/HeadingComponent";
 import InputComponentZod from "../components/layouts/InputComponentZod";
 import { useForm } from "react-hook-form";
@@ -26,17 +27,22 @@ function EditBook() {
 
   const { user } = useContext(UserContext);
   console.log('user', user);
-  const { books, getBooks } = useContext(BooksContext);
-  console.log(books);
+
+  const { oneBook, getOneBook } = useContext(BooksContext);
+  console.log(oneBook);
 
   const params = useParams();
   console.log('params', params);
   const id_book = params.id_book ? Number(params.id_book) : undefined;
 
-  useEffect(() => {
-    getBooks({ id_user: user?.id_user, id_book: id_book })
-  },[getBooks, user, id_book])
+console.log(user?.id_user);
 
+  useEffect(() => {
+    getOneBook({id_book})
+
+  },[/* getOneBook */id_book])
+
+  console.log(oneBook);
   const { register, handleSubmit, formState: { errors }, } = useForm<FormValues>({
     mode: "onChange",
     resolver:zodResolver(bookSchema)
@@ -51,7 +57,8 @@ function EditBook() {
     {
       name: "title",
       type: "text",
-      placeholder: "Titulo",
+      placeholder: `${oneBook.title}`,
+      
     },
     {
       name: "author",
@@ -73,7 +80,7 @@ function EditBook() {
   return <>
 
     <div className="w-full  flex flex-col  items-center  border-2 ">
-      <Heading level="h1" title="AÑADE UN LIBRO" />
+      <Heading level="h1" title="EDITA EL LIBRO" />
       <form onSubmit={handleSubmit(onSubmit)} className="shadow-teal-300 inset-shadow-xs shadow-outline p-20 shadow-lg flex flex-col gap-3 bg-gray-100 min-w-2xl"
       >
         {datosUsuario.map((input) =>
