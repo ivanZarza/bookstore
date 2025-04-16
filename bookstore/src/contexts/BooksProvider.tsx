@@ -10,7 +10,7 @@ type BookContextType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   editBook: (book: Book) => Promise<any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  deleteBook: (id_book: number) => Promise<any>;
+  deleteBook: (id_book: number, id_user: number) => Promise<any>;
 };
 
 const BooksContext = createContext<BookContextType>({
@@ -93,7 +93,7 @@ function BooksProvider(props: BooksProviderProps) {
       });
     }
 
-    async function deleteBook(id_book: number) {
+    async function deleteBook(id_book: number, id_user: number) {
       const url = new URL(`${VITE_API_ORIGIN}/books`);
       return await fetch(url, {
         method: 'DELETE',
@@ -101,7 +101,7 @@ function BooksProvider(props: BooksProviderProps) {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ id_book }),
+        body: JSON.stringify({ id_book, id_user }),
       });
     }
 

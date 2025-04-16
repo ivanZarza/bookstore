@@ -22,7 +22,7 @@ function BookItem(props: BookItemsProps) {
   return (
     <>
       <section className="w-full max-w-65 h-[550px]  flex flex-col justify-between items-center border-1 bg-indigo-100 mb-3 mt-10">
-        <img src={book.photo} alt="Portada del libro El Hobbit" className=" h-[300px] w-full object-cover" />
+        <img src={book.photo} alt="" className=" h-[300px] w-full object-cover" />
 
           <div className="w-full flex items-start justify-start">
         <h1 className="text-2xl px-3  

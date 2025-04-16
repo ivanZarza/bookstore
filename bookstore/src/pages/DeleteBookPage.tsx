@@ -2,17 +2,25 @@ import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BooksContext } from "../contexts/BooksProvider";
+import { UserContext } from "../contexts/UserProvider";
 
 function DeleteBookPage() {
 
-  const { id } = useParams();
-  console.log('id', id);
+  const params = useParams();
+  console.log(params);
+  const { id_book } = params;
   const { deleteBook } = useContext(BooksContext);
+  const { user } = useContext(UserContext);
+  console.log(user?.id_user);
 
   const navigate = useNavigate();
   const handleDeleteBook = async () => {
     try {
-      const response = await deleteBook(Number(id));
+      if (!user) {
+        toast.error('Usuario no autenticado');
+        return;
+      }
+      const response = await deleteBook(Number(id_book), user.id_user);
       if (response.ok) {
         toast.success('Libro borrado correctamente');
         navigate('/bookPage');
