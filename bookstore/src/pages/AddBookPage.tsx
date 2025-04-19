@@ -42,6 +42,7 @@ function AddBook() {
     const book: Book = {
       id_user: user?.id_user as number,
       ...data,
+      favorite: 0
     };
     console.log('book', book);
     try {
