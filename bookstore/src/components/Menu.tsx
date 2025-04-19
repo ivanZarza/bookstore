@@ -31,7 +31,7 @@ function Menu(/* props:MenuProps */) {
                       lg:text-4xl lg:gap-5" /* {clases} */>
         <NavLink to="/" >Home</NavLink>
         {!ifUser && <NavLink to="/login" >Login</NavLink>}
-        {!ifUser && <NavLink to="/register" >Register</NavLink>}
+        {!ifUser && <NavLink to="/register" >Register</NavLink>} 
         {ifUser && <NavLink to="/profile" >Profile</NavLink>}
         {ifUser && <NavLink to="/BookPage" >Libros</NavLink>}
         {ifUser && <NavLink to="/addbook" >Add Book</NavLink>}
