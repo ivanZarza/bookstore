@@ -63,3 +63,33 @@ button:hover {
 .titulo {
   animation: animacionTitulo 1s linear;
 }
+
+.favorite {
+  background-color: white;
+  color: #f00;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #f00;
+  padding: 0.4rem 0.5rem;
+}
+
+.favorite:hover {
+  background-color: #f00;
+  color: white;
+}
+
+.isFavorite {
+  background-color: #f00;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 0.4rem 0.5rem;
+}
+
+.isFavorite:hover {
+  background-color: white;
+  color: #f00;
+}

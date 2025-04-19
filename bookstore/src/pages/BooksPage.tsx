@@ -12,7 +12,7 @@ function BooksPage() {
 
 useEffect(() => {
   getBooks({id_user: user?.id_user })
-}, [user, getBooks]);
+}, [user, getBooks, books]);
 
 
   return (
