@@ -27,7 +27,7 @@ function Menu(/* props:MenuProps */) {
   return (
     <>
       <nav className="flex flex-col  justify-around items-center  text-2xl gap-2  w-full h-150 p-4  bg-gradient-to-b bg-teal-300/90 to-white/90 backdrop-blur-lg
-                      md:text-xl md:gap-5 md:justify-end md:flex-row md:m-2 md:w-full md:bg-none md:h-fit 
+                      md:text-2xl md:gap-5 md:justify-end md:flex-row md:m-2 md:w-full md:bg-none md:h-fit 
                       lg:text-4xl lg:gap-5" /* {clases} */>
         <NavLink to="/" >Home</NavLink>
         {!ifUser && <NavLink to="/login" >Login</NavLink>}
