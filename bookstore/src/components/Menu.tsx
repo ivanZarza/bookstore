@@ -33,7 +33,7 @@ function Menu(/* props:MenuProps */) {
         {!ifUser && <NavLink to="/login" >Login</NavLink>}
         {!ifUser && <NavLink to="/register" >Register</NavLink>} 
         {ifUser && <NavLink to="/profile" >Profile</NavLink>}
-        {ifUser && <NavLink to="/BookPage" >Libros</NavLink>}
+        {ifUser && <NavLink to="/bookpage" >Libros</NavLink>}
         {ifUser && <NavLink to="/addbook" >Add Book</NavLink>}
         {ifUser && <NavLink to="/logout" >Logout</NavLink>}
         {user && <GreekComponent />}

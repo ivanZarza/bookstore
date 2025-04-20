@@ -9,26 +9,25 @@ import { Link } from 'react-router-dom';
 
 type BookItemsProps={
   book: Book 
+  handleFavorite: (id_book: number) => void
 }
 
 function BookItem(props: BookItemsProps) {
 
-  const { book } = props;
+  const { book, handleFavorite } = props;
 
 const favoriteClass = book.favorite === 1 ? "isFavorite" : "favorite";
 
 
 
-  function handleFavorite() {
-    console.log('Libro favorito');
-  }
+
 
   return (
     <>
       <section className="w-full max-w-65 h-[550px]  flex flex-col justify-between items-center border-1 bg-indigo-100 mb-3 mt-10 ">
         <div className='w-full relative'>
         <img src={book.photo} alt="" className=" h-[300px] w-full object-cover " />
-          <button onClick={handleFavorite} className={favoriteClass}  ><FaHeart size={15}/></button>
+          <button onClick={() => handleFavorite(book.id_book ?? 0)} className={favoriteClass}  ><FaHeart size={15}/></button>
           </div>
           <div className="w-full flex items-start justify-start">
         <h1 className="text-2xl px-3  
