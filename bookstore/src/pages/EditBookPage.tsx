@@ -118,11 +118,17 @@ function EditBook() {
             errors={errors}
           />)}
         <div className="w-full flex border-2 pl-1.5  flex-col justify-between focus:outline-none bg-gray-200 border-teal-500 ">
-          <label className="text-gray-700 text-2xl">
+          <label className="text-gray-700             
+            text-lg
+            sm:placeholder:text-xl sm:text-xl 
+            md:text-2xl">
             Tipo de tapa
             <select
               {...register("type")}
-              className="w-full pl-1.5 text-2xl flex-col justify-between focus:outline-none bg-gray-200 border-teal-500 placeholder:text-2xl `"
+              className="w-full pl-1.5  flex-col justify-between focus:outline-none bg-gray-200 border-teal-500
+              placeholder:text-lg text-lg 
+              sm:placeholder:text-xl sm:text-xl sm:h-8
+              md:placeholder:text-2xl"
             >
               <option value="">"Elige una opcion"</option>
               <option value={'Tapa dura'} >Tapa dura</option>
