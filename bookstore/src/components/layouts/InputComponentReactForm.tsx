@@ -56,7 +56,7 @@ function FormComponentReactForm(props: InputProps) {
         }}
       />
 
-      {invalido && <p className="text-red-500 text-[0.75rem] sm:text-sm md:text-lg " >{String(props.errors[props.name]?.message)}</p>}
+      {invalido && <p className="text-red-500 text-[0.75rem]  md:text-lg " >{String(props.errors[props.name]?.message)}</p>}
     </div>
   );
 }
