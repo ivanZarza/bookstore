@@ -20,7 +20,7 @@ function Header() {
                           ">
         <div className="flex justify-between bg-teal-300/90 backdrop-blur-lg">
           <Logo />
-          <button onClick={() => setisOpenSidebar(!isOpenSidebar)} className="md:hidden "><GiHamburgerMenu size={52}/>
+          <button onClick={() => setisOpenSidebar(!isOpenSidebar)} className="md:hidden p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition duration-300"><GiHamburgerMenu size={52}/>
           </button>
         </div>
         <div className="hidden md:flex items-center">
