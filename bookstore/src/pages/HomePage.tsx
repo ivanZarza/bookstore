@@ -16,12 +16,12 @@ function HomePage() {
         <li className="text-md sm:text-lg md:text-xl">➕ Agrega nuevos libros a tu colección.</li>
       </ul>
       <div className="mt-8 flex flex-col justify-center items-center sm:flex-row gap-4 sm:gap-2 md:gap-4">
-        <Link to="/books">
+        <Link to="/bookpage">
           <button className="px-6 py-2 bg-blue-700 hover:bg-blue-800 rounded text-white sm:px-4 sm:py-1 md:px-6 md:py-2">
             Ver mis libros
           </button>
         </Link>
-        <Link to="/add-book">
+        <Link to="/addbook">
           <button className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded text-white sm:px-4 sm:py-1 md:px-6 md:py-2">
             Agregar un libro
           </button>
