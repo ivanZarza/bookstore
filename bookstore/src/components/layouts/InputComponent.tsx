@@ -29,7 +29,7 @@ function InputComponent(props: InputProps) {
         sm:placeholder:text-xl sm:text-xl sm:h-8
         md:placeholder:text-2xl md:text-2xl md:h-10"
         type={props.type}
-        placeholder={props.placeholder}
+        placeholder={ !activo ? props.placeholder : ''}
         name={props.name}
         ref={inputRef}
         pattern={props.pattern}
@@ -40,9 +40,6 @@ function InputComponent(props: InputProps) {
           props.validarDatos(event.target.name, event.target.value);
         }
         }
-      /*     props.type === 'checkbox'
-                  ? (event) => props.recuperarDatos(event.target.name, event.target.checked)
-                  : (event) => props.recuperarDatos(event.target.name, event.target.value) */
       />
 
       {!valido && <p className='text-red-600 text-sm md:text-lg '>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
