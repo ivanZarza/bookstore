@@ -42,7 +42,7 @@ function InputComponent(props: InputProps) {
         }
       />
 
-      {!valido && <p className='text-red-600 text-[0.75rem] sm:text-sm md:text-lg '>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
+      {!valido && <p className='text-red-600 text-[0.75rem]  md:text-lg '>{props.generarMensajeError(props.name, inputRef.current?.value)}</p>}
 
     </div>
   );
