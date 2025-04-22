@@ -42,6 +42,13 @@ button:hover {
   background-color: #535bf2;
 }
 
+button.desplegable {
+  background-color:transparent;
+
+  svg {
+    color: black;
+  }
+}
 
 
 .active {
