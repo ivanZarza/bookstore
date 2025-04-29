@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build.ghPages": "vite build --base /bookstore/react/ --outDir ../dist/react",
     "lint": "eslint .",
     "preview": "vite preview"
   },
