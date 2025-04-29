@@ -21,13 +21,13 @@ jobs:
           # cache: 'npm'
 
       # - run: |
-      #     cd angular \
-      #     npm install \
+      #     cd angular
+      #     npm install
       #     npm run build.ghPages
 
       - run: |
-          cd react \
-          npm install \
+          cd react
+          npm install
           npm run build.ghPages
 
       - name: Upload static files as artifact
