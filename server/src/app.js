@@ -37,7 +37,7 @@ const checkIfDomainIsAllowed = (origin) => {
 app.use(function enableCORS (req, res, next) {
   const { origin }  = req.headers
   
-  if (checkIfDomainIsAllowed(origin)) {
+/*   if (checkIfDomainIsAllowed(origin)) { */
     console.log("Access-Control-Allow-Origin", origin);
     console.log("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -47,9 +47,9 @@ app.use(function enableCORS (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Credentials", true);
-  }
-  next();
-})
+/*   }
+  next();*/
+}) 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
