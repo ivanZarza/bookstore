@@ -34,11 +34,11 @@ app.set("port", process.env.PORT || 3000);
 }; */
 
 // Middleware para habilitar CORS con cabeceras personalizadas
-app.use(function enableCORS (req, res, next) {
+/* app.use(function enableCORS (req, res, next) {
   const { origin }  = req.headers
   
 /*   if (checkIfDomainIsAllowed(origin)) { */
-    console.log("Access-Control-Allow-Origin", origin);
+/*     console.log("Access-Control-Allow-Origin", origin);
     console.log("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     console.log("Access-Control-Allow-Credentials", true);
@@ -46,10 +46,18 @@ app.use(function enableCORS (req, res, next) {
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Credentials", true); */
 /*   }
-  next();*/
-}) 
+  next();
+})  */
+
+  app.use(cors({
+    origin: '*', // Permitir cualquier origen
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+    credentials: true // Permitir cookies y credenciales
+  }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
