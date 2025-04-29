@@ -32,7 +32,7 @@ jobs:
 
       - run: |
           mkdir -p dist/angular
-          cp -r angular/dist/browser/* dist/angular
+          cp -r angular/dist/angular/browser/* dist/angular
       - run: |
           mkdir -p dist/react
           cp -r react/dist/* dist/react
