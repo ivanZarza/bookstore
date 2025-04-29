@@ -1,0 +1,150 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256263_960_720.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.desenfoque{
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.486);
+}
+
+.form {
+  width: 50%;
+  max-width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--background-color);
+  background-color: rgba(255, 255, 255, 0.315);
+  border-radius: 8px;
+}
+
+.rotulo {
+  font-size: 2.5rem;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.interior {
+width: 100%;
+height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  text-align: left;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  margin-top: 5px;
+}
+
+span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+.boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primer-color);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+
+button:hover {
+  background-color: color-mix(in srgb, var(--primer-color), #777 10%);
+}
+
+@media (max-width: 768px) {
+  .container { 
+    background-size: cover;
+    background-size: 40%;
+  }
+
+  .rotulo{
+    font-size: 1.5rem;
+  }
+
+  .form {
+    padding: 15px;
+  } 
+
+  span {
+    font-size: 1rem;
+  }
+
+  input {
+    padding: 5px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 475px) {
+  .container {
+    background-size: 60%;
+  }
+
+  .rotulo{
+    display: none;
+  }
+
+  .form {
+    width: 50%;
+    padding: 10px;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+
+  input {
+    padding: 5px;
+  }
+
+  button {
+    padding: 6px;
+  }
+}

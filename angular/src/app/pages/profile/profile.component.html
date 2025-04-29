@@ -1,0 +1,68 @@
+
+  <div class="container">
+    <div class="desenfoque">
+    <div class="perfil">
+      <div class="imagen">
+        <img src="{{ user.photo }}" alt="Foto perfil">
+      </div>
+
+      <div class="titulo">
+        <h2>{{ nombreCompleto() }}</h2>
+      </div>
+
+      <div class="datos">
+        <h2>Nombre:</h2>
+        <h2>{{ usuarioService.user.name }}</h2>
+
+      </div>
+
+      <div class="datos">
+        <h2>Apellidos:</h2>
+        <h2>{{ user.last_name }}</h2>
+      </div>
+
+      <div class="datos">
+        <h2>Correo:</h2>
+        <h4>{{ user.email }}</h4>
+      </div>
+    </div>
+    <div class="formulario">
+      <div class="encabezado">
+        <h2>Cambia tu perfil</h2>
+      </div>
+
+      <div class="form">
+        <form>
+          <div class="input">
+            <label><span>Nombre</span><input type="text" #nuevoNombre value="{{usuarioService.user.name}}"></label>
+          </div>
+
+          <div class="input">
+            <label><span>Apellidos</span><input type="text"  #nuevoApellido value="{{usuarioService.user.last_name}}"></label>
+          </div>
+
+          <div class="input">
+            <label><span>Correo</span><input type="email" #nuevoCorreo value="{{usuarioService.user.email}}"></label>
+          </div>
+
+          <div class="input">
+            <label><span>Url</span><input type="url" #nuevaFoto value="{{usuarioService.user.photo}}"></label>
+          </div>
+
+          <div class="input">
+            <label><span>Password 1</span><input type="password" #password1></label>
+          </div>
+          
+          <div class="input">
+            <label><span>Password 2</span><input type="password" #password2></label>
+          </div>
+
+          <div class="boton" >
+            <button type="button" (click)="actualizarUsuario(nuevoNombre.value, nuevoApellido.value, nuevoCorreo.value, nuevaFoto.value,  password1.value, password2.value)" >Actualizar</button>
+          </div>
+          <h1 [class] ="miClase" >{{ mensaje }}</h1>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

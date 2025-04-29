@@ -1,0 +1,134 @@
+.libro {
+  display: flex;
+  width: 200px;
+min-height: 400px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #363636;
+  border-radius: 8px;
+  padding-bottom: 10px;
+  background-color: rgba(73, 73, 73, 0.767);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.x {
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.id {
+  display: flex;
+  justify-content: right;
+  width: 60%;
+  color: white;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.x button {
+  background-color: #363636;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  text-align: center;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.x button:hover {
+  background-color: red;
+}
+
+.img img {
+  max-width: 180px; 
+height: 180px;
+  border-radius: 4px;
+}
+
+.detalles {
+  color: white;
+  margin-top: 5px;
+}
+
+button {
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.even {
+  background-color: rgba(0, 255, 13, 0.767);
+}
+
+.even:hover {
+  background-color: rgba(255, 255, 255, 0.767);
+  color: black;
+}
+
+.noEven {
+  background-color: rgb(0, 0, 184);
+}
+
+.noEven:hover {
+  background-color: rgba(255, 255, 255, 0.767);
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .libro {
+    min-height: 350px;
+    padding: 10px;
+    padding-bottom: 8px;
+  }
+
+
+  .id {
+    font-size: medium;
+  }
+
+  .x button {
+    font-size: 13px;
+    padding: 2px;
+  }
+
+  button {
+    padding: 8px;
+  }
+
+h2 {
+  font-size: 1rem;
+}
+
+p{
+  font-size: 0.8rem;
+}
+}
+
+@media (max-width: 475px) {
+  .libro {
+    height: 250px;
+    padding: 4px;
+    padding-bottom: 6px;
+  }
+
+
+
+  .id {
+    font-size: small;
+  }
+
+  .x button {
+    font-size: 12px;
+    padding: 1px;
+  }
+
+  button {
+    padding: 6px;
+  }
+}

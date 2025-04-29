@@ -1,0 +1,178 @@
+
+.container {
+  height: 100%;
+  background-image: url(https://previews.123rf.com/images/halfpoint/halfpoint1506/halfpoint150600535/41240779-padres-composici%C3%B3n-d%C3%ADas-escritorio-de-oficina-estudio-tirado-en-el-fondo-de-madera.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.desenfoque {
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+}
+
+.perfil {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.imagen img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.titulo {
+  margin-bottom: 10px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.datos {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  width: 50%;
+  margin-bottom: 10px;
+  color:white;
+  text-transform: capitalize;
+}
+
+.datos h2 {
+  color:white;
+}
+
+.datos h4 {
+  font-size: 0.9rem;
+  color:white;
+}
+
+.formulario {
+  width: 50%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.encabezado {
+  margin-bottom: 10px;
+  color:white;
+}
+
+.form {
+  width: 100%;
+  color:white;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.input label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.boton {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.boton button {
+  padding: 10px 20px;
+  background-color: var(--primer-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.boton button:hover {
+  background-color: color-mix(in srgb, var(--primer-color), #777 10%);
+}
+
+h1.success {
+  color: green;
+}
+
+h1.error {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .datos {
+    width: 70%;
+    padding: 5px;
+  }
+
+  .datos h2{
+    font-size: 1.2rem;
+  }
+    .datos h4{
+      font-size: 1rem;
+    }
+
+  .formulario {
+    width: 70%;
+  }
+
+  .input input {
+    padding: 8px;
+  }
+
+  .boton button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 475px) {
+  .datos {
+    width: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .formulario {
+    width: 80%;
+  }
+
+  .input input {
+    padding: 6px;
+  }
+
+  .boton button {
+    padding: 6px 12px;
+  }
+
+  .imagen img {
+    width: 150px;
+    height: 150px;
+  }
+}
