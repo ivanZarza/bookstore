@@ -20,12 +20,18 @@ app.set("port", process.env.PORT || 3000);
 
 // como restringir dominios 
 const checkIfDomainIsAllowed = (origin) => {
-  if (origin.startsWith("http://localhost:")) return true
-  if (origin.endsWith(".vercel.app")) return true
-  if (origin.endsWith(".github.io")) return true
+  // Verificar si origin es una cadena válida
+  if (typeof origin !== "string") {
+    return false; // Si no es una cadena, no está permitido
+  }
 
-  return false
-}
+  // Verificar si el dominio está permitido
+  if (origin.startsWith("http://localhost:")) return true;
+  if (origin.endsWith(".vercel.app")) return true;
+  if (origin.endsWith(".github.io")) return true;
+
+  return false; // Si no coincide con ninguna regla, no está permitido
+};
 
 // Middleware para habilitar CORS con cabeceras personalizadas
 app.use(function enableCORS (req, res, next) {
