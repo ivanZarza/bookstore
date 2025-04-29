@@ -37,6 +37,9 @@ jobs:
           mkdir -p dist/react
           cp -r react/dist/* dist/react
 
+      - run: |
+          cp index.html dist
+
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
