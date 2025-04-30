@@ -52,10 +52,12 @@ app.set("port", process.env.PORT || 3000);
 })  */
 
   app.use(cors({
-    origin: '*', // Permitir cualquier origen
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-    credentials: true // Permitir cookies y credenciales
+    origin: (origin, callback) => {
+      callback(null, origin || true); 
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+    credentials: true 
   }));
 
 
