@@ -20,8 +20,16 @@ const rutas = [
     title : 'LIBROS',
   },
   {
-    path : '/addBook',
+    path : '/books/addBook',
     title : 'CREAR LIBRO',
+  },
+  {
+    path : '/books/editBook',
+    title : 'EDITAR LIBRO',
+  },
+  {
+    path : '/book/:id',
+    title : 'VER LIBRO',
   },
   {
     path : '/logout',
