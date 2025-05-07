@@ -34,18 +34,20 @@
 </script>
 
 <template>
-  <v-container class="d-flex flex-column align-center justify-start h-100 w-auto ga-5">
-    <CabeceraGenerica descriptivo="Introduce tus datos" titulo="Entra" />
+  <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
+    <CabeceraGenerica
+      descriptivo="Introduce tus datos para iniciar sesion"
+      titulo="INICIA SESION"
+    />
     <FormGenerico>
       <InputGenerico
-        v-for="(input, index) in valoresInput"
+        v-for="input in valoresInput"
         :key="input.name"
+        v-model="input.value"
         :label="input.label"
         :name="input.name"
         :rules="input.rules"
         :type="input.type"
-        :value="input.value"
-        @update-value="(newValue) => (valoresInput[index].value = newValue)"
       />
       <template #boton>
         <BotonGenerico

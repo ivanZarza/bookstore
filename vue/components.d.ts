@@ -18,5 +18,6 @@ declare module 'vue' {
     InputGenerico: typeof import('./src/components/InputGenerico.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SelectGenerico: typeof import('./src/components/SelectGenerico.vue')['default']
   }
 }

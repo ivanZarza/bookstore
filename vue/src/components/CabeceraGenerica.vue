@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <v-container class="d-flex flex-column align-center ga-3">
+  <v-container class="d-flex flex-column align-center ga-2">
     <h1 class="text-h2"> {{ titulo }} </h1>
     <p class="text-h4">{{ descriptivo }}</p>
   </v-container>
