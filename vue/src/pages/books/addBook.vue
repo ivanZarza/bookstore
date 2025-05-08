@@ -5,10 +5,12 @@
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
   import { useBookStore } from '@/stores/BookStore';
+  import { useUserStore } from '@/stores/UserStore';
 
   const bookStore = useBookStore();
   const { addBook } = bookStore;
 
+  const userStore = useUserStore();
 
   const valoresInput = reactive([
     {
@@ -83,7 +85,7 @@
 
   async function addNewBook () {
     const newBook = {
-      id_user: 1,
+      id_user: userStore.user.data[0].id_user,
       title: valoresInput[0].value,
       author: valoresInput[1].value,
       price: valoresInput[2].value,
@@ -98,6 +100,7 @@
     } else {
       console.error('Error al añadir el libro');
     }
+    console.log('NEWBOOK',newBook);
   }
 
   </script>

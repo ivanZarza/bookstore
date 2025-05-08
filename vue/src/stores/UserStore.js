@@ -26,6 +26,21 @@ export const useUserStore = defineStore('userService', {
       }
       this.user = await response.json();
     },
+
+    async register (dataRegister) {
+      const url = new URL(`${VITE_API_ORIGIN}/register`);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataRegister),
+      });
+      if (!response.ok) {
+        throw new Error(`Error registering: ${response.status} ${response.statusText}`);
+      }
+      this.user = await response.json();
+    },
     async logout () {
       this.user = {};
     },

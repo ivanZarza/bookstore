@@ -4,6 +4,25 @@
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import { useUserStore } from '@/stores/UserStore';
+
+  const userStore = useUserStore();
+
+  async function register () {
+    try {
+      const dataRegister = {
+        name: valoresInput.value[0].value,
+        last_name: valoresInput.value[1].value,
+        email: valoresInput.value[2].value,
+        photo: valoresInput.value[3].value,
+        password: valoresInput.value[4].value,
+      }
+      await userStore.register(dataRegister);
+      console.log('Registro exitoso');
+    } catch (error) {
+      console.error('Error al registrar:', error);
+    }
+  }
 
   const valoresInput = ref([
     {
@@ -108,12 +127,7 @@
       />
       <template #boton>
         <BotonGenerico
-          @click="
-            () => {
-              // Aquí puedes manejar el evento de registro
-              console.log('Registrar usuario con:', valoresInput);
-            }
-          "
+          @click="register"
         >
           Registrarse
         </BotonGenerico>

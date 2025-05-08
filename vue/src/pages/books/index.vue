@@ -1,11 +1,14 @@
 <script setup>
   import { useBookStore } from '@/stores/BookStore';
+  import { useUserStore } from '@/stores/UserStore';
 
   const bookStore = useBookStore();
   const { fetchBooks } = bookStore;
 
-  // Realiza la petición para obtener los libros
-  fetchBooks({ id_user: 1 });
+  const userStore = useUserStore();
+
+
+  fetchBooks({ id_user: userStore.user.data[0].id_user })
 </script>
 
 <template>
