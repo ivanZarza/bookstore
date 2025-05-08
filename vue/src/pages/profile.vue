@@ -4,13 +4,21 @@
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import { useUserStore } from '@/stores/UserStore';
 
+  const userStore = useUserStore();
+  const user = userStore.isLogin ? userStore.user.data[0]: {
+    name: '',
+    last_name: '',
+    email: '',
+    photo: '',
+  };
   const valoresInput = reactive([
     {
       name: 'name',
-      label: 'Nombre de usuario',
+      label: 'Nombre',
       type: 'text',
-      value: '',
+      value: user.name || '',
       required: true,
       rules: [
         v => !!v || 'El nombre de usuario es obligatorio',
@@ -23,7 +31,7 @@
       name: 'surname',
       label: 'Apellidos',
       type: 'text',
-      value: '',
+      value: user.last_name || '',
       required: true,
       rules: [
         v => !!v || 'Los apellidos son obligatorios',
@@ -36,7 +44,7 @@
       name: 'email',
       label: 'Correo electrónico',
       type: 'email',
-      value: '',
+      value: user.email || '',
       required: true,
       rules: [
         v => !!v || 'El correo electrónico es obligatorio',
@@ -47,7 +55,7 @@
       name: 'photo',
       label: 'Foto de perfil',
       type: 'text',
-      value: '',
+      value: user.photo || '',
       required: true,
       rules: [
         v => !!v || 'La foto de perfil es obligatoria',
@@ -88,6 +96,18 @@
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
     <CabeceraGenerica descriptivo="Aqui podras ver tus datos  y cambiarlos  si  es necesario" titulo="Perfil" />
+    <h1 class="text-center">{{ `Hola  ${user.name} ${user.last_name}` }} </h1>
+    <img
+      alt="Foto de perfil"
+      class="rounded-circle mb-4"
+      :src="user.photo"
+      style="width: 200px; height: 200px;"
+    >
+    <p class="text-center">
+      {{ user.email }}
+    </p>
+
+    <h2>En este formulario podras cambiar tus datos</h2>
     <FormGenerico>
       <InputGenerico
         v-for="input in valoresInput"

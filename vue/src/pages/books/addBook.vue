@@ -1,17 +1,21 @@
 <script setup>
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import { useBookStore } from '@/stores/BookStore';
+
+  const bookStore = useBookStore();
+  const { addBook } = bookStore;
 
 
-  const valoresInput = ref([
+  const valoresInput = reactive([
     {
       name: 'title',
       label: 'Título del libro',
       type: 'text',
-      value: 'dfcdf',
+      value: '',
       required: true,
       rules: [
         v => !!v || 'El título es obligatorio',
@@ -61,7 +65,7 @@
     },
   ]);
 
-  const valoresSelect = ref(
+  const valoresSelect = reactive(
     {
       name: 'type',
       label: 'Tipo de tapa',
@@ -76,6 +80,25 @@
       ],
     },
   );
+
+  async function addNewBook () {
+    const newBook = {
+      id_user: 1,
+      title: valoresInput[0].value,
+      author: valoresInput[1].value,
+      price: valoresInput[2].value,
+      photo: valoresInput[3].value,
+      type: valoresSelect.value,
+    }
+    console.log('book', newBook);
+    const response = await addBook({ book:newBook });
+    console.log('response', response);
+    if (response.ok) {
+      console.log('Libro añadido correctamente');
+    } else {
+      console.error('Error al añadir el libro');
+    }
+  }
 
   </script>
 
@@ -108,7 +131,7 @@
         <BotonGenerico
           @click="
             () => {
-              // Aquí puedes manejar el evento de inicio de sesión
+              addNewBook();
               console.log('Iniciar sesión con:', valoresInput.map(input => input.value),'valoresSelect', valoresSelect.value);
             }
           "

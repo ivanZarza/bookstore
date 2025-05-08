@@ -1,11 +1,27 @@
 <script setup>
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import { useUserStore } from '@/stores/UserStore';
 
-  const valoresInput = ref([
+  const userStore = useUserStore();
+
+  async function login () {
+    try {
+      const dataLogin = {
+        email: valoresInput[0].value,
+        password: valoresInput[1].value,
+      }
+      await userStore.login(dataLogin);
+      console.log('Inicio de sesión exitoso');
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
+  }
+
+  const valoresInput = reactive([
     {
       name: 'email',
       label: 'Correo electrónico',
@@ -51,16 +67,16 @@
       />
       <template #boton>
         <BotonGenerico
-          @click="
-            () => {
-              // Aquí puedes manejar el evento de inicio de sesión
-              console.log('Iniciar sesión con:', valoresInput);
-            }
-          "
+          @click="login"
         >
           Iniciar sesión
         </BotonGenerico>
       </template>
     </FormGenerico>
+    <v-row class="d-flex justify-center">
+      <v-col class="text-center" cols="12">
+        <p>¿No tienes cuenta? <a href="/register">Regístrate</a></p>
+      </v-col>
+    </v-row>
   </v-container>
 </template>

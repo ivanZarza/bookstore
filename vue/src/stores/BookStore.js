@@ -9,8 +9,7 @@ export const useBookStore = defineStore('bookService', {
     books: [],
   }),
   getters: {
-    getBooks: state => state.books,
-    getBook: state => state.book,
+
   },
   actions: {
     async fetchBooks ({ id_user, id_book } = {}) {
@@ -32,37 +31,32 @@ export const useBookStore = defineStore('bookService', {
       }
     },
     async addBook (book) {
-      const response = await fetch(url, {
+      const url = new URL(`${VITE_API_ORIGIN}/books`);
+      return await fetch(url,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(book),
       });
-      this.fetchBooks();
-      return response;
     },
-    async updateBook (book) {
 
-      const response = await fetch(`${url}/${book.id}`, {
+    async updateBook (book) {
+      return await fetch(`${VITE_API_ORIGIN}/books`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(book),
       });
-      this.fetchBooks();
-      return response;
     },
-    async deleteBook (id) {
-      const response = await fetch(`${url}/${id}`, {
+    async deleteBook (id_book) {
+      return await fetch(`${VITE_API_ORIGIN}/books/${id_book}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      this.fetchBooks();
-      return response;
     },
   },
 });
