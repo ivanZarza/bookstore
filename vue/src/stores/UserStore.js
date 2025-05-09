@@ -6,7 +6,7 @@ const {
 
 export const useUserStore = defineStore('userService', {
   state: () => ({
-    user: {},
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {},
   }),
   getters: {
     isLogin: state => !!state.user?.data,
@@ -25,6 +25,8 @@ export const useUserStore = defineStore('userService', {
         throw new Error(`Error logging in: ${response.status} ${response.statusText}`);
       }
       this.user = await response.json();
+      localStorage.setItem('user', JSON.stringify(this.user));
+
     },
 
     async register (dataRegister) {
@@ -40,9 +42,11 @@ export const useUserStore = defineStore('userService', {
         throw new Error(`Error registering: ${response.status} ${response.statusText}`);
       }
       this.user = await response.json();
+      localStorage.setItem('user', JSON.stringify(this.user));
     },
     async logout () {
       this.user = {};
+      localStorage.removeItem('user');
     },
   },
 })

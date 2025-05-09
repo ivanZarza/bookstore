@@ -16,6 +16,8 @@
       }
       await userStore.login(dataLogin);
       console.log('Inicio de sesión exitoso');
+      console.log('User data:', userStore.user.data);
+      console.log(localStorage.getItem('user'));
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }

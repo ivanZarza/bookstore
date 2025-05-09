@@ -29,15 +29,17 @@
       <v-icon left>mdi-book</v-icon>
       BookStore
     </v-toolbar-title>
+    <div class="d-flex align-center justify-center">
+      <span class="text-caption mt-1">Cerrar sesión</span>
+      <v-btn icon class="pa-0">
+        <v-icon>mdi-export</v-icon>
+      </v-btn>
 
-    <v-btn icon>
-      <v-icon>mdi-export</v-icon>
-    </v-btn>
+    </div>
   </v-app-bar>
   <v-navigation-drawer
     v-model="showMenu"
-    absolute
-    class="mt-0"
+    fixed
     temporary
   >
     <v-list>

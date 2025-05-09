@@ -13,6 +13,7 @@
     email: '',
     photo: '',
   };
+  console.log(userStore.isLogin);
   const valoresInput = reactive([
     {
       name: 'name',
