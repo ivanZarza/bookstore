@@ -9,6 +9,8 @@
 
   // Obtener los libros del usuario
   fetchBooks({ id_user: userStore.user?.data?.id_user });
+  console.log(userStore.user?.data?.id_user);
+  console.log(bookStore.books?.data);
 </script>
 
 <template>
@@ -17,7 +19,21 @@
       descriptivo="Aqui puedes ver todos los libros que has agregado"
       titulo="TU BIBLIOTECA"
     />
-    <v-row>
+    <v-row v-if="!bookStore.books.data">
+      <v-col
+        class="d-flex flex-column align-center justify-center"
+        cols="12"
+      >
+        <v-icon
+          color="grey lighten-1"
+          size="100"
+        >
+          mdi-book
+        </v-icon>
+        <h2 class="text-h5">No tienes libros en tu biblioteca</h2>
+      </v-col>
+    </v-row>
+    <v-row v-else>
       <v-col
         v-for="book in bookStore.books.data"
         :key="book.id_book"
@@ -53,5 +69,6 @@
         </v-card>
       </v-col>
     </v-row>
+
   </v-container>
 </template>

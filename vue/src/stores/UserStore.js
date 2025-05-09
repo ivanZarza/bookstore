@@ -45,8 +45,8 @@ export const useUserStore = defineStore('userService', {
       localStorage.setItem('user', JSON.stringify(this.user));
     },
     async logout () {
-      this.user = {};
       localStorage.removeItem('user');
+      this.user = {};
     },
   },
 })

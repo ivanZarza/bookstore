@@ -6,10 +6,10 @@ const {
 
 export const useBookStore = defineStore('bookService', {
   state: () => ({
-    books: [],
+    books: {},
   }),
   getters: {
-
+    isLogin: state => !!state.books?.data,
   },
   actions: {
     async fetchBooks ({ id_user, id_book } = {}) {
@@ -57,6 +57,9 @@ export const useBookStore = defineStore('bookService', {
           'Content-Type': 'application/json',
         },
       });
+    },
+    clearBooks () {
+      this.books= {};
     },
   },
 });

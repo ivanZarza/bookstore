@@ -1,14 +1,30 @@
 <script setup>
   import { ref } from 'vue';
   import rutas from '@/rutas/rutas';
+  import { useUserStore } from '@/stores/UserStore';
+  import { useBookStore } from '@/stores/BookStore';
+  import router from '@/router';
+
+  const userStore = useUserStore();
+  const bookStore = useBookStore();
 
   const showMenu = ref(false);
+  const showDialog = ref(false);
+
+  const cerrarSesion = () => {
+    userStore.logout();
+    console.log(bookStore.books.data);
+    bookStore.clearBooks();
+    localStorage.removeItem('user');
+    showDialog.value = false;
+    router.push({ name: '/login' });
+  };
 
 </script>
 
 <template>
   <v-app-bar
-    class="text-white text-center "
+    class="text-white text-center"
     height="120"
     style="
       background-image: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg');
@@ -30,12 +46,22 @@
       BookStore
     </v-toolbar-title>
     <div class="d-flex align-center justify-center">
-      <span class="text-caption mt-1">Cerrar sesión</span>
-      <v-btn icon class="pa-0">
+      <!--       <v-btn><span class="text-caption mt-1">Cerrar sesión</span></v-btn> -->
+      <v-btn icon @click="showDialog = true">
         <v-icon>mdi-export</v-icon>
       </v-btn>
-
     </div>
+    <v-dialog v-model="showDialog" max-width="400">
+      <v-card>
+        <v-card-title class="text-h5">Confirmar cierre de sesión</v-card-title>
+        <v-card-text>¿Estás seguro de que deseas cerrar sesión?</v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn color="primary" text @click="showDialog = false">Cancelar</v-btn>
+          <v-btn color="red" text @click="cerrarSesion">Cerrar sesión</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app-bar>
   <v-navigation-drawer
     v-model="showMenu"
