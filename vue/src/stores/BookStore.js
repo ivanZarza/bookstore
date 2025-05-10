@@ -8,6 +8,7 @@ export const useBookStore = defineStore('bookService', {
   state: () => ({
     books: {},
     oneBook: {},
+    favoritesBooks: {},
   }),
   getters: {
   },
@@ -67,6 +68,17 @@ export const useBookStore = defineStore('bookService', {
     },
     async clearBooks () {
       this.books = {};
+    },
+    async changeFavorite (id_user, id_book) {
+      const url = new URL(`${VITE_API_ORIGIN}/favorite`);
+      return await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ id_user, id_book }),
+      });
     },
   },
 });

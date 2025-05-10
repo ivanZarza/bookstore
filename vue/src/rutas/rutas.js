@@ -28,8 +28,8 @@ const rutas = [
     title : 'EDITAR LIBRO',
   },
   {
-    path : '/book/:id',
-    title : 'VER LIBRO',
+    path : '/book/favorite',
+    title : 'LIBROS FAVORITOS',
   },
   {
     path : '/logout',

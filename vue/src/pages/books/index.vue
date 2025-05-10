@@ -9,15 +9,14 @@
   const userStore = useUserStore();
   const { fetchBooks, getOneBook } = bookStore;
   const showDialog = ref(false);
+  const libroAEliminar = ref(null);
+
   fetchBooks({ id_user: userStore.user?.id_user });
 
   function editarLibro (book) {
     getOneBook(book);
     router.push({ name: '/books/editBook' });
   }
-
-  const libroAEliminar = ref(null);
-
 
   async function eliminarLibro () {
     if (!libroAEliminar.value) {
@@ -36,6 +35,15 @@
       return;
     }
   }
+
+  async function cambiarFavorito (id_user, id_book) {
+    try {
+      await bookStore.changeFavorite(id_user, id_book);
+      await fetchBooks({ id_user });
+    } catch (error) {
+      console.error('Error al cambiar el estado de favorito:', error);
+    }
+  }
 </script>
 
 <template>
@@ -44,7 +52,7 @@
       descriptivo="Aqui puedes ver todos los libros que has agregado"
       titulo="TU BIBLIOTECA"
     />
-    <v-row v-if="!bookStore.books">
+    <v-row v-if="!bookStore.books || bookStore.books.length === 0">
       <v-col
         class="d-flex flex-column align-center justify-center"
         cols="12"
@@ -59,6 +67,7 @@
       </v-col>
     </v-row>
     <v-row v-else>
+
       <v-col
         v-for="book in bookStore.books"
         :key="book.id_book"
@@ -71,13 +80,26 @@
           height="auto"
           width="250px"
         >
-          <v-img
-            alt="Portada del libro"
-            class="mx-0"
-            cover
-            height="300px"
-            :src="book.photo || 'https://via.placeholder.com/150'"
-          />
+          <div class="position-relative">
+            <v-img
+              alt="Portada del libro"
+              class="mx-0"
+              cover
+              height="300px"
+              :src="book.photo || 'https://via.placeholder.com/150'"
+            />
+            <v-btn
+              class="position-absolute top-0 start-0"
+              color="white"
+              elevation="2"
+              icon
+              @click="cambiarFavorito(userStore.user?.id_user, book.id_book)"
+            >
+              <v-icon color="red">
+                {{ book.favorite === 1 ? 'mdi-heart' : 'mdi-heart-outline' }}
+              </v-icon>
+            </v-btn>
+          </div>
           <v-card-title>{{ book.title }}</v-card-title>
           <v-card-subtitle>{{ book.author }}</v-card-subtitle>
           <v-card-text>
