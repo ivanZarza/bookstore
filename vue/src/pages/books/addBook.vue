@@ -85,7 +85,7 @@
 
   async function addNewBook () {
     const newBook = {
-      id_user: userStore.user.data[0].id_user,
+      id_user: userStore.user?.id_user,
       title: valoresInput[0].value,
       author: valoresInput[1].value,
       price: valoresInput[2].value,
@@ -94,7 +94,6 @@
     }
     console.log('book', newBook);
     const response = await addBook({ book:newBook });
-    console.log('response', response);
     if (response.ok) {
       console.log('Libro añadido correctamente');
     } else {
@@ -131,14 +130,7 @@
         />
       </template>
       <template #boton>
-        <BotonGenerico
-          @click="
-            () => {
-              addNewBook();
-              console.log('Iniciar sesión con:', valoresInput.map(input => input.value),'valoresSelect', valoresSelect.value);
-            }
-          "
-        >
+        <BotonGenerico @click="addNewBook">
           Añadir libro
         </BotonGenerico>
       </template>

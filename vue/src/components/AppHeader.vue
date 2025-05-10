@@ -5,16 +5,15 @@
   import { useBookStore } from '@/stores/BookStore';
   import router from '@/router';
 
-  const userStore = useUserStore();
   const bookStore = useBookStore();
+  const userStore = useUserStore();
 
   const showMenu = ref(false);
   const showDialog = ref(false);
 
   const cerrarSesion = () => {
-    userStore.logout();
-    console.log(bookStore.books.data);
     bookStore.clearBooks();
+    userStore.logout();
     localStorage.removeItem('user');
     showDialog.value = false;
     router.push({ name: '/login' });

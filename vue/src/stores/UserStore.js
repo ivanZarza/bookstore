@@ -5,11 +5,14 @@ const {
 } = import.meta.env;
 
 export const useUserStore = defineStore('userService', {
-  state: () => ({
-    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {},
-  }),
+  state: () => {
+    const userJson = localStorage.getItem('user');
+    return {
+      user: userJson ? JSON.parse(userJson) : {},
+    };
+  },
   getters: {
-    isLogin: state => !!state.user?.data,
+    isLogin: state => !!state.user,
   },
   actions: {
     async login (dataLogin) {
@@ -24,9 +27,10 @@ export const useUserStore = defineStore('userService', {
       if (!response.ok) {
         throw new Error(`Error logging in: ${response.status} ${response.statusText}`);
       }
-      this.user = await response.json();
+      const data = await response.json();
+      this.user = data.data[0];
       localStorage.setItem('user', JSON.stringify(this.user));
-
+      return response
     },
 
     async register (dataRegister) {
@@ -41,12 +45,24 @@ export const useUserStore = defineStore('userService', {
       if (!response.ok) {
         throw new Error(`Error registering: ${response.status} ${response.statusText}`);
       }
-      this.user = await response.json();
+      const data = await response.json();
+      this.user = data.data[0];
       localStorage.setItem('user', JSON.stringify(this.user));
+      return response
     },
     async logout () {
       localStorage.removeItem('user');
       this.user = {};
+    },
+    async updateUser (user) {
+      const url = new URL(`${VITE_API_ORIGIN}/usuarios`);
+      return await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
     },
   },
 })

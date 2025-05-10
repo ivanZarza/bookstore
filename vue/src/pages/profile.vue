@@ -7,13 +7,40 @@
   import { useUserStore } from '@/stores/UserStore';
 
   const userStore = useUserStore();
-  const user = userStore.isLogin ? userStore.user.data[0]: {
+  const user = userStore.isLogin ? userStore.user : {
     name: '',
     last_name: '',
     email: '',
     photo: '',
   };
   console.log(userStore.isLogin);
+
+  async function modificarUsario () {
+    const nuevoUsuario = {
+      id_user: userStore.user.id_user,
+      name: valoresInput[0].value,
+      last_name: valoresInput[1].value,
+      email: valoresInput[2].value,
+      photo: valoresInput[3].value,
+      password: valoresInput[4].value,
+    };
+    try {
+      const response = await userStore.updateUser(nuevoUsuario);
+      if (!response.ok) {
+        throw new Error('Error al actualizar el usuario');
+      }
+      await userStore.login({
+        email: valoresInput[2].value,
+        password: valoresInput[4].value,
+      });
+      localStorage.setItem('user', JSON.stringify(userStore.user));
+      location.reload();
+      console.log('Usuario actualizado exitosamente', response);
+    } catch (error) {
+      console.error('Error de validación:', error);
+    }
+  }
+
   const valoresInput = reactive([
     {
       name: 'name',
@@ -29,7 +56,7 @@
       ],
     },
     {
-      name: 'surname',
+      name: 'last_name',
       label: 'Apellidos',
       type: 'text',
       value: user.last_name || '',
@@ -74,8 +101,8 @@
       rules: [
         v => !!v || 'La contraseña es obligatoria',
         v =>
-          (!!v && v.length >= 6) ||
-          'La contraseña debe tener al menos 6 caracteres',
+          (!!v && v.length >= 4) ||
+          'La contraseña debe tener al menos 4 caracteres',
       ],
     },
     {
@@ -87,7 +114,7 @@
       rules: [
         v => !!v || 'La confirmación de la contraseña es obligatoria',
         v =>
-          v === valoresInput.value[5].value || 'Las contraseñas no coinciden',
+          v === valoresInput[4].value || 'Las contraseñas no coinciden',
       ],
     },
   ]);
@@ -119,15 +146,7 @@
         :rules="input.rules"
         :type="input.type"
       />
-      <BotonGenerico
-        @click="
-          () => {
-            // Aquí puedes manejar el evento de inicio de sesión
-            console.log('Iniciar sesión con:', valoresInput.map(input => input.value));
-          }
-        "
-      >
-        >
+      <BotonGenerico @click="modificarUsario">
         Guardar Cambios
       </BotonGenerico>
     </FormGenerico>

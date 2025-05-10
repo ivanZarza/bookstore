@@ -7,11 +7,14 @@ const {
 export const useBookStore = defineStore('bookService', {
   state: () => ({
     books: {},
+    oneBook: {},
   }),
   getters: {
-    isLogin: state => !!state.books?.data,
   },
   actions: {
+    getOneBook (book) {
+      this.oneBook = book
+    },
     async fetchBooks ({ id_user, id_book } = {}) {
       const url = new URL(`${VITE_API_ORIGIN}/books`);
       try{
@@ -25,7 +28,8 @@ export const useBookStore = defineStore('bookService', {
         if (!response.ok) {
           throw new Error(`Error fetching books: ${response.status} ${response.statusText}`);
         }
-        this.books = await response.json();
+        const data = await response.json();
+        this.books = data.data;
       } catch (error) {
         console.error('Error fetching books:', error.message);
       }
@@ -47,19 +51,22 @@ export const useBookStore = defineStore('bookService', {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(book),
+        body: JSON.stringify( book ),
       });
     },
-    async deleteBook (id_book) {
-      return await fetch(`${VITE_API_ORIGIN}/books/${id_book}`, {
+    async deleteBook (id_book, id_user) {
+      const url = new URL(`${VITE_API_ORIGIN}/books`);
+      return await fetch(url, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
+        body: JSON.stringify({ id_book, id_user }),
       });
     },
-    clearBooks () {
-      this.books= {};
+    async clearBooks () {
+      this.books = {};
     },
   },
 });

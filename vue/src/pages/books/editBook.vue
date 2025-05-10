@@ -1,17 +1,47 @@
 <script setup>
-  import { reactive, ref } from 'vue';
+  import { reactive } from 'vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import SelectGenerico from '@/components/SelectGenerico.vue';
+  import { useBookStore } from '@/stores/BookStore';
+  import router from '@/router';
+
+  const bookStore = useBookStore();
+  const { updateBook } = bookStore;
+  console.log(bookStore.oneBook);
+
+  async function editarLibro () {
+    const nuevoLibro = {
+      id_book: bookStore.oneBook.id_book,
+      id_user: bookStore.oneBook.id_user,
+      title: valoresInput[0].value,
+      author: valoresInput[1].value,
+      price: valoresInput[2].value,
+      type: valoresSelect.value,
+      photo: valoresInput[3].value,
+    };
+    try {
+      const response = await updateBook({ book: nuevoLibro });
+      if (!response.ok){
+        throw new Error('Error al actualizar el libro');
+      }
+      await bookStore.fetchBooks({ id_user: bookStore.oneBook.id_user });
+      router.push({ name: '/books/' });
+      console.log(response);
+    } catch (error) {
+      console.error('Error de validación:', error);
+      return;
+    }
+  }
 
   const valoresInput = reactive([
     {
       name: 'title',
       label: 'Título del libro',
       type: 'text',
-      value: '',
+      value: bookStore.oneBook.title,
       required: true,
       rules: [
         v => !!v || 'El título es obligatorio',
@@ -23,7 +53,7 @@
       name: 'author',
       label: 'Autor del libro',
       type: 'text',
-      value: '',
+      value: bookStore.oneBook.author,
       required: true,
       rules: [
         v => !!v || 'El autor es obligatorio',
@@ -35,7 +65,7 @@
       name: 'price',
       label: 'Precio del libro',
       type: 'number',
-      value: '',
+      value: bookStore.oneBook.price,
       required: true,
       rules: [
         v => !!v || 'El precio es obligatorio',
@@ -46,7 +76,7 @@
       name: 'photo',
       label: 'URL de la foto del libro',
       type: 'text',
-      value: '',
+      value: bookStore.oneBook.photo,
       required: true,
       rules: [
         v => !!v || 'La URL de la foto es obligatoria',
@@ -57,10 +87,10 @@
     },
   ]);
 
-  const valoresSelect = ref({
+  const valoresSelect = reactive({
     name: 'type',
     label: 'Tipo de tapa',
-    value: 'Selecciona un tipo de tapa',
+    value: bookStore.oneBook.type,
     items: ['Selecciona un tipo de tapa','tapa dura', 'tapa blanda'],
     rules: [
       v => !!v || 'El tipo de tapa es obligatorio',
@@ -97,12 +127,7 @@
       </template>
       <template #boton>
         <BotonGenerico
-          @click="
-            () => {
-              // Aquí puedes manejar el evento de inicio de sesión
-              console.log('Iniciar sesión con:', valoresInput.map(input => input.value),'valoresSelect', valoresSelect.value);
-            }
-          "
+          @click="editarLibro"
         >
           Editar libro
         </BotonGenerico>

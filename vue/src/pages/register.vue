@@ -1,30 +1,35 @@
 <script setup>
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
   import { useUserStore } from '@/stores/UserStore';
+  import router from '@/router';
 
   const userStore = useUserStore();
 
   async function register () {
     try {
       const dataRegister = {
-        name: valoresInput.value[0].value,
-        last_name: valoresInput.value[1].value,
-        email: valoresInput.value[2].value,
-        photo: valoresInput.value[3].value,
-        password: valoresInput.value[4].value,
+        name: valoresInput[0].value,
+        last_name: valoresInput[1].value,
+        email: valoresInput[2].value,
+        photo: valoresInput[3].value,
+        password: valoresInput[4].value,
       }
-      await userStore.register(dataRegister);
+      const response = await userStore.register(dataRegister);
+      if (!response.ok) {
+        throw new Error('Error al registrar el usuario');
+      }
+      router.push({ name: '/profile' });
       console.log('Registro exitoso');
     } catch (error) {
       console.error('Error al registrar:', error);
     }
   }
 
-  const valoresInput = ref([
+  const valoresInput = reactive([
     {
       name: 'name',
       label: 'Nombre de usuario',
@@ -100,7 +105,7 @@
           (!!v && v.length >= 4) ||
           'La contraseña debe tener al menos 4 caracteres',
         v=>
-          v === valoresInput.value[4].value ||
+          v === valoresInput[4].value ||
           'Las contraseñas no coinciden',
       ],
     },
