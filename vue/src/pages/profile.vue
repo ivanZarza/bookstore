@@ -6,7 +6,9 @@
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
   import { useUserStore } from '@/stores/UserStore';
 
+
   const userStore = useUserStore();
+  console.log(userStore.isLogin);
   const user = userStore.isLogin ? userStore.user : {
     name: '',
     last_name: '',

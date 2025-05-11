@@ -33,20 +33,26 @@
     <v-btn icon @click="showMenu = !showMenu">
       <v-icon>mdi-menu</v-icon>
     </v-btn>
-    <v-btn icon to="/books">
-      <v-icon>mdi-magnify</v-icon>
+    <v-btn icon to="/books/favoritesBooks">
+      <v-icon>mdi-heart</v-icon>
     </v-btn>
 
     <v-toolbar-title
       class="text-h3 d-flex items-center justify-center"
       style="line-height: normal"
+      to="/"
     >
-      <v-icon left>mdi-book</v-icon>
-      BookStore
+      <router-link class="text-decoration-none text-white" to="/books/">
+        <v-icon left>mdi-book-open-page-variant</v-icon>
+      </router-link>
+      <router-link class="text-decoration-none text-white" to="/">
+        BookStore
+      </router-link>
     </v-toolbar-title>
+
     <div class="d-flex align-center justify-center">
       <!--       <v-btn><span class="text-caption mt-1">Cerrar sesión</span></v-btn> -->
-      <v-btn icon @click="showDialog = true">
+      <v-btn icon @click="userStore.isLogin && (showDialog = true)">
         <v-icon>mdi-export</v-icon>
       </v-btn>
     </div>

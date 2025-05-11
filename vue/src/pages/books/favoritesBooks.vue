@@ -1,9 +1,7 @@
 <script setup>
-  import { ref } from 'vue';
   import { useBookStore } from '@/stores/BookStore';
   import { useUserStore } from '@/stores/UserStore';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
-  import router from '@/router';
 
   const bookStore = useBookStore();
   console.log(useBookStore());
@@ -30,12 +28,12 @@
       titulo="TUS FAVORITOS"
     />
     <v-row>
-        <v-col class="d-flex justify-center">
-          <v-btn color="primary" text to="/books/">
-            Volver a Libros
-          </v-btn>
-        </v-col>
-      </v-row>
+      <v-col class="d-flex justify-center">
+        <v-btn color="primary" text to="/books/">
+          Volver a Libros
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row v-if="!bookStore.favoritesBooks || bookStore.favoritesBooks.length === 0">
       <v-col
         class="d-flex flex-column align-center justify-center"

@@ -60,9 +60,11 @@
         <v-icon
           color="grey lighten-1"
           size="100"
+          to="/books"
         >
-          mdi-book
+          mdi-book-open-page-variant
         </v-icon>
+
         <h2 class="text-h5">No tienes libros en tu biblioteca</h2>
       </v-col>
     </v-row>

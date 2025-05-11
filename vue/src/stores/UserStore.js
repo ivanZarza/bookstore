@@ -12,7 +12,7 @@ export const useUserStore = defineStore('userService', {
     };
   },
   getters: {
-    isLogin: state => !!state.user,
+    isLogin: state => Object.keys(state.user).length > 0,
   },
   actions: {
     async login (dataLogin) {
