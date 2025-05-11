@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Build and deploy
 
 on:
@@ -10,39 +7,52 @@ on:
 jobs:
   # Build job
   build:
-    # Specify runner +  build & upload the static files as an artifact
+    # Especificar runner y construir las aplicaciones
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: build
+
+      # Construir aplicación Angular
+      - name: Build Angular
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          # cache: 'npm'
-
       - run: |
           cd angular
           npm install
           npm run build.ghPages
-
-      - run: |
-          cd react
-          npm install
-          npm run build.ghPages
-
       - run: |
           mkdir -p dist/angular
           cp -r angular/dist/angular/browser/* dist/angular
+
+      # Construir aplicación React
+      - name: Build React
+        run: |
+          cd react
+          npm install
+          npm run build.ghPages
       - run: |
           mkdir -p dist/react
-          cp -r react/dist/* dist/react
+          cp -r react/build/* dist/react
 
-      - run: | 
-          cp index.html dis
+      # Construir aplicación Vue
+      - name: Build Vue
+        run: |
+          cd vue
+          npm install
+          npm run build
+      - run: |
+          mkdir -p dist/vue
+          cp -r vue/dist/* dist/vue
 
+      # Copiar archivo index.html en la raíz
+      - run: |
+          cp index.html dist/
+
+      # Subir archivos estáticos como artefactos
       - name: Upload static files as artifact
         id: deployment
-        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
@@ -54,8 +64,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write      # para desplegar en Pages
+      id-token: write   # para verificar que el despliegue es válido
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

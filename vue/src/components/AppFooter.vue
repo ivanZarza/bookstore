@@ -13,7 +13,7 @@
       :title="item.title"
     >
       <v-icon
-            color="primary"
+        color="primary"
         :icon="item.icon"
         :size="item.icon === '$vuetify' ? 24 : 16"
       />

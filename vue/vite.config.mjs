@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/quotes */
 // Plugins
 import Components from 'unplugin-vue-components/vite'
 import Vue from '@vitejs/plugin-vue'
@@ -11,6 +12,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/bookstore/vue/',
   plugins: [
     VueRouter(),
     Vue({
