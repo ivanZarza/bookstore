@@ -28,7 +28,7 @@ const rutas = [
     title : 'EDITAR LIBRO',
   },
   {
-    path : '/book/favorite',
+    path : '/books/favoritesBooks',
     title : 'LIBROS FAVORITOS',
   },
   {

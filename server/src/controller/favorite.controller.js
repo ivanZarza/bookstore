@@ -2,7 +2,7 @@ const { pool } = require('../database');
 
 const getFavorites = async (req, res) => {
   let { id_user } = req.query;
-
+console.log('id_user', id_user);
   try {
     if (!id_user) {
       res.status(400).json({ ok: false, message: 'Faltan datos' });

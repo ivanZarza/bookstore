@@ -80,5 +80,19 @@ export const useBookStore = defineStore('bookService', {
         body: JSON.stringify({ id_user, id_book }),
       });
     },
+    async fetchFavorites (id_user) {
+      const url = new URL(`${VITE_API_ORIGIN}/favorite?id_user=${id_user}`);
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Error fetching favorites: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log('data', data);
+        this.favoritesBooks = data.data;
+      } catch (error) {
+        console.error('Error fetching favorites:', error.message);
+      }
+    },
   },
 });
