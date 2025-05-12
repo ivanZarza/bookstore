@@ -9,10 +9,16 @@ import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { routes } from 'vue-router/auto-routes'
 import { useUserStore } from '@/stores/UserStore'
 
-
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes,
+  routes: [
+    ...routes, // Incluye las rutas generadas automáticamente
+    {
+      path: '/:pathMatch(.*)*', // Ruta comodín para manejar rutas no existentes
+      name: 'NotFound',
+      component: () => import('@/pages/NotFound.vue'), // Página de error 404
+    },
+  ],
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804

@@ -1,39 +1,43 @@
 const rutas = [
   {
-    path : '/',
-    title : 'INICIO',
+    path: '/',
+    title: 'INICIO',
   },
   {
-    path : '/login',
-    title : 'INICIAR SESION',
+    path: '/login',
+    title: 'INICIAR SESION',
   },
   {
-    path : '/register',
-    title : 'REGISTRARSE',
+    path: '/register',
+    title: 'REGISTRARSE',
   },
   {
-    path : '/profile',
-    title : 'PERFIL',
+    path: '/profile',
+    title: 'PERFIL',
   },
   {
-    path : '/books',
-    title : 'LIBROS',
+    path: '/books',
+    title: 'LIBROS',
   },
   {
-    path : '/books/addBook',
-    title : 'CREAR LIBRO',
+    path: '/books/addBook',
+    title: 'CREAR LIBRO',
   },
   {
-    path : '/books/editBook',
-    title : 'EDITAR LIBRO',
+    path: '/books/editBook',
+    title: 'EDITAR LIBRO',
   },
   {
-    path : '/books/favoritesBooks',
-    title : 'LIBROS FAVORITOS',
+    path: '/books/favoritesBooks',
+    title: 'LIBROS FAVORITOS',
   },
   {
-    path : '/logout',
-    title : 'CERRAR SESION',
+    path: '/logout',
+    title: 'CERRAR SESION',
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    title: '404',
   },
 ];
 
