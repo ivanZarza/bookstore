@@ -32,7 +32,6 @@ html, body {
 
 .toast-container .ngx-toastr.toast-validacion {
   background-color:#6aff5c96;
-  backdrop-filter: blur(5px);
   color: #0e8f03; 
   padding: 10px 10px 10px 56px; 
   border-radius: 10px; 
