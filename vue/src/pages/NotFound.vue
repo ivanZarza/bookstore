@@ -16,9 +16,3 @@
 
 <script setup>
 </script>
-
-<style scoped>
-h1 {
-  margin-top: 20px;
-}
-</style>
