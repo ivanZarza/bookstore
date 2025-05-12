@@ -26,7 +26,7 @@
 <template>
   <v-text-field
     v-model="inputValue"
-    class="mb-3"
+    class="mb-2 text-sm-sm text-md-md"
     :label="label"
     :name="name"
     :rules="rules"
