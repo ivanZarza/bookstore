@@ -1,17 +1,30 @@
 <script setup>
   import { ref } from 'vue';
-  import rutas from '@/rutas/rutas';
   import { useUserStore } from '@/stores/UserStore';
   import { useBookStore } from '@/stores/BookStore';
+  import rutas from '@/rutas/rutas';
   import router from '@/router';
 
-  const bookStore = useBookStore();
   const userStore = useUserStore();
+  const bookStore = useBookStore();
 
   const showMenu = ref(false);
   const showDialog = ref(false);
 
-  const visibleRoutes = rutas.filter(route => !route.hidden);
+  // Filtrar rutas según el estado de autenticación
+  const visibleRoutes = rutas.filter(route => {
+    if (route.path === '/') {
+      // Siempre incluir la ruta de Inicio
+      return true;
+    }
+    if (!userStore.isLogin) {
+      // Mostrar solo las rutas de login y register si no está logueado
+      return route.path === '/login' || route.path === '/register';
+    } else {
+      // Mostrar todas las rutas si está logueado
+      return route.path !== '/login' && route.path !== '/register';
+    }
+  });
 
   const cerrarSesion = () => {
     bookStore.clearBooks();
@@ -20,12 +33,10 @@
     showDialog.value = false;
     router.push({ name: '/login' });
   };
-
 </script>
 
 <template>
   <v-app-bar
-    class="text-white text-center"
     height="120"
     style="
       background-image: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg');
@@ -38,11 +49,8 @@
     <v-btn icon to="/books/favoritesBooks">
       <v-icon>mdi-heart</v-icon>
     </v-btn>
-
     <v-toolbar-title
-      class="text-h5 text-sm-h3 d-flex items-center justify-center"
-      style="line-height: normal"
-      to="/"
+      class="text-h6 text-sm-h3 d-flex items-center justify-center pr-10"
     >
       <router-link class="text-decoration-none text-white" to="/books/">
         <v-icon left>mdi-book-open-page-variant</v-icon>
@@ -51,7 +59,6 @@
         BookStore
       </router-link>
     </v-toolbar-title>
-
     <div class="d-flex align-center justify-center">
       <!--       <v-btn><span class="text-caption mt-1">Cerrar sesión</span></v-btn> -->
       <v-btn icon @click="userStore.isLogin && (showDialog = true)">
