@@ -31,5 +31,9 @@
   background-color: #78909C;
 }
 
-
+@media (max-width: 600px) {
+  .btn {
+    font-size: 10px; /* Tamaño más pequeño en pantallas pequeñas */
+  }
+}
 </style>

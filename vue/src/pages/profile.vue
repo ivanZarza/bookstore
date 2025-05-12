@@ -143,18 +143,20 @@
       :timeout="3000"
     />
     <CabeceraGenerica descriptivo="Aqui podras ver tus datos  y cambiarlos  si  es necesario" titulo="TU PERFIL" />
-    <h1 class="text-center">{{ `Hola  ${user.name} ${user.last_name}` }} </h1>
+    <CabeceraGenerica
+      class="text-center"
+      :descriptivo="'En este formulario podras cambiar tus datos'"
+      :titulo="user.name + ' ' + user.last_name"
+    />
     <img
       alt="Foto de perfil"
       class="rounded-circle mb-4"
       :src="user.photo"
       style="width: 200px; height: 200px;"
     >
-    <p class="text-center">
+    <h3 class="text-center">
       {{ user.email }}
-    </p>
-
-    <h2>En este formulario podras cambiar tus datos</h2>
+    </h3>
     <FormGenerico>
       <InputGenerico
         v-for="input in valoresInput"

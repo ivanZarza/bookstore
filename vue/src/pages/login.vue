@@ -10,6 +10,7 @@
 
   const userStore = useUserStore();
   const toastError = ref(false);
+  const toastSuccess = ref(false);
 
   async function login () {
     const dataLogin = {
@@ -22,7 +23,10 @@
         toastError.value = true;
         throw new Error('Error al iniciar sesión');
       }
-      router.push({ name: '/profile' });
+      toastSuccess.value = true;
+      setTimeout(() => {
+        router.push({ name: '/profile' });
+      }, 2000);
       console.log('Inicio de sesión exitoso', response);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
@@ -65,6 +69,12 @@
       <v-col
         class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
       >
+        <ToastComponent
+          v-model="toastSuccess"
+          color="green"
+          message="Inicio de sesión exitoso"
+          :timeout="3000"
+        />
         <ToastComponent
           v-model="toastError"
           color="red"

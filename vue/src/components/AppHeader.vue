@@ -40,7 +40,7 @@
     </v-btn>
 
     <v-toolbar-title
-      class="text-h3 d-flex items-center justify-center"
+      class="text-h5 text-sm-h3 d-flex items-center justify-center"
       style="line-height: normal"
       to="/"
     >
