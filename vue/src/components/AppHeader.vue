@@ -11,6 +11,8 @@
   const showMenu = ref(false);
   const showDialog = ref(false);
 
+  const visibleRoutes = rutas.filter(route => !route.hidden);
+
   const cerrarSesion = () => {
     bookStore.clearBooks();
     userStore.logout();
@@ -75,7 +77,7 @@
   >
     <v-list>
       <v-list-item
-        v-for="(ruta,index) in rutas"
+        v-for="(ruta,index) in visibleRoutes"
         :key="index"
         :to="ruta.path"
       >

@@ -19,5 +19,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelectGenerico: typeof import('./src/components/SelectGenerico.vue')['default']
+    ToastComponent: typeof import('./src/components/ToastComponent.vue')['default']
   }
 }

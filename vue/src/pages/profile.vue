@@ -1,9 +1,10 @@
 <script setup>
-  import { reactive } from 'vue';
+  import { reactive,ref } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import ToastComponent from '@/components/ToastComponent.vue';
   import { useUserStore } from '@/stores/UserStore';
 
 
@@ -15,7 +16,8 @@
     email: '',
     photo: '',
   };
-  console.log(userStore.isLogin);
+  const toastError = ref(false);
+  const toastSuccess = ref(false);
 
   async function modificarUsario () {
     const nuevoUsuario = {
@@ -29,16 +31,19 @@
     try {
       const response = await userStore.updateUser(nuevoUsuario);
       if (!response.ok) {
+        toastError.value = true;
         throw new Error('Error al actualizar el usuario');
       }
       await userStore.login({
         email: valoresInput[2].value,
         password: valoresInput[4].value,
       });
+      toastSuccess.value = true;
       localStorage.setItem('user', JSON.stringify(userStore.user));
       location.reload();
       console.log('Usuario actualizado exitosamente', response);
     } catch (error) {
+      toastError.value = true;
       console.error('Error de validación:', error);
     }
   }
@@ -125,6 +130,24 @@
 
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
+    <v-row>
+      <v-col
+        class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
+      >
+        <ToastComponent
+          v-model="toastError"
+          color="red"
+          message="Error al actualizar el usuario"
+          :timeout="3000"
+        />
+        <ToastComponent
+          v-model="toastSuccess"
+          color="green"
+          message="Usuario actualizado exitosamente"
+          :timeout="3000"
+        />
+      </v-col>
+    </v-row>
     <CabeceraGenerica descriptivo="Aqui podras ver tus datos  y cambiarlos  si  es necesario" titulo="Perfil" />
     <h1 class="text-center">{{ `Hola  ${user.name} ${user.last_name}` }} </h1>
     <img

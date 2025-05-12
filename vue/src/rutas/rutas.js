@@ -26,6 +26,7 @@ const rutas = [
   {
     path: '/books/editBook',
     title: 'EDITAR LIBRO',
+    hidden: true,
   },
   {
     path: '/books/favoritesBooks',
@@ -34,10 +35,12 @@ const rutas = [
   {
     path: '/logout',
     title: 'CERRAR SESION',
+    hidden: true,
   },
   {
     path: '/:pathMatch(.*)*',
     title: '404',
+    hidden: true,
   },
 ];
 

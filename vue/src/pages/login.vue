@@ -1,13 +1,15 @@
 <script setup>
-  import { reactive } from 'vue';
+  import { reactive, ref } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
+  import ToastComponent from '@/components/ToastComponent.vue';
   import { useUserStore } from '@/stores/UserStore';
   import router from '@/router';
 
   const userStore = useUserStore();
+  const toastError = ref(false);
 
   async function login () {
     const dataLogin = {
@@ -17,12 +19,14 @@
     try {
       const response = await userStore.login(dataLogin);
       if (!response.ok) {
+        toastError.value = true;
         throw new Error('Error al iniciar sesión');
       }
       router.push({ name: '/profile' });
       console.log('Inicio de sesión exitoso', response);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
+      toastError.value = true;
     }
   }
   const valoresInput = reactive([
@@ -57,6 +61,18 @@
   <v-container
     class="d-flex flex-column align-center justify-start h-100 w-60 ga-5"
   >
+    <v-row>
+      <v-col
+        class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
+      >
+        <ToastComponent
+          v-model="toastError"
+          color="red"
+          message="Fallo al iniciar sesión"
+          :timeout="3000"
+        />
+      </v-col>
+    </v-row>
     <CabeceraGenerica
       descriptivo="Introduce tus datos para iniciar sesion"
       titulo="INICIA SESION"

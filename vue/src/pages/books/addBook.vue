@@ -1,5 +1,5 @@
 <script setup>
-  import { reactive } from 'vue';
+  import { reactive,ref } from 'vue';
   import InputGenerico from '@/components/InputGenerico.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
@@ -11,6 +11,8 @@
   const { addBook } = bookStore;
 
   const userStore = useUserStore();
+  const toastError = ref(false);
+  const toastSuccess = ref(false);
 
   const valoresInput = reactive([
     {
@@ -92,20 +94,43 @@
       photo: valoresInput[3].value,
       type: valoresSelect.value,
     }
-    console.log('book', newBook);
-    const response = await addBook({ book:newBook });
-    if (response.ok) {
-      console.log('Libro añadido correctamente');
-    } else {
-      console.error('Error al añadir el libro');
+    try{
+      console.log('book', newBook);
+      const response = await addBook({ book:newBook });
+      if(!response.ok){
+        toastError.value = true;
+        throw new Error('Error al crear el libro');
+      }
+      toastSuccess.value = true;
+      console.log('Libro creado exitosamente', response);
+    }catch(error){
+      toastError.value = true;
+      console.error('Error de validación:', error);
     }
-    console.log('NEWBOOK',newBook);
   }
 
   </script>
 
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
+    <v-row>
+      <v-col
+        class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
+      >
+        <ToastComponent
+          v-model="toastError"
+          color="red"
+          message="Error al crear el libro"
+          :timeout="3000"
+        />
+        <ToastComponent
+          v-model="toastSuccess"
+          color="green"
+          message="Libro creado exitosamente"
+          :timeout="3000"
+        />
+      </v-col>
+    </v-row>
     <CabeceraGenerica
       descriptivo="Introduce los datos del libro"
       titulo="AÑADE UN LIBRO"
