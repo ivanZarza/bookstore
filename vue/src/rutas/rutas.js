@@ -35,7 +35,6 @@ const rutas = [
   {
     path: '/logout',
     title: 'CERRAR SESION',
-    hidden: true,
   },
   {
     path: '/:pathMatch(.*)*',
