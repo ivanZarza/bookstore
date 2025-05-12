@@ -10,7 +10,7 @@
   const { fetchBooks, getOneBook } = bookStore;
   const showDialog = ref(false);
   const libroAEliminar = ref(null);
-
+console.log('userStore', userStore.user);
   fetchBooks({ id_user: userStore.user?.id_user });
 
   function editarLibro (book) {

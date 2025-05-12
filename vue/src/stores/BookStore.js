@@ -25,6 +25,7 @@ export const useBookStore = defineStore('bookService', {
         if (id_book) {
           url.searchParams.append('id_book', id_book);
         }
+        console.log('url', url.toString());
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Error fetching books: ${response.status} ${response.statusText}`);

@@ -17,11 +17,8 @@ const getbooks = async (req, res) => {
   let { id_user, id_book } = req.query;
   try {
     let sql;
-    if ((id_user === null || id_user === undefined) && (id_book === null || id_book === undefined)) {
-      sql = 'SELECT * FROM book';
-      let [result] = await pool.query(sql);
-      // return { ok: true, message: 'Exito!!', data: result, headers: req.headers }
-      res.status(200).json({ ok: true, message: 'Exito!!', data: result, headers: req.headers });
+    if ((id_user === null || id_user === undefined)) {
+      return res.status(401).json({ ok: false, message: 'Inicia sesion' });
     }
 
 
