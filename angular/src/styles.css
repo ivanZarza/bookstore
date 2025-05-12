@@ -31,7 +31,7 @@ html, body {
 }
 
 .toast-container .ngx-toastr.toast-validacion {
-  background-color:#6aff5c96;
+  background-color:#abfda4;
   color: #0e8f03; 
   padding: 10px 10px 10px 56px; 
   border-radius: 10px; 
@@ -43,7 +43,7 @@ html, body {
 
 
 .toast-container .ngx-toastr.toast-denegado {
-  background-color:#ffc3c3d3;
+  background-color:#fcb7b7;
   color: rgb(255, 0, 0); 
   padding: 10px 10px 10px 56px; 
   border-radius: 10px; 
