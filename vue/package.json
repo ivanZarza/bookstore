@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build.ghPages": "vite build --base /bookstore/veu/",
+    "build.ghPages": "vite build --base /bookstore/vue/",
     "preview": "vite preview",
     "lint": "eslint . --fix"
   },
