@@ -108,29 +108,22 @@
       console.error('Error de validación:', error);
     }
   }
-
   </script>
 
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
-    <v-row>
-      <v-col
-        class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
-      >
-        <ToastComponent
-          v-model="toastError"
-          color="red"
-          message="Error al crear el libro"
-          :timeout="3000"
-        />
-        <ToastComponent
-          v-model="toastSuccess"
-          color="green"
-          message="Libro creado exitosamente"
-          :timeout="3000"
-        />
-      </v-col>
-    </v-row>
+    <ToastComponent
+      v-model="toastError"
+      color="red"
+      message="Error al crear el libro"
+      :timeout="3000"
+    />
+    <ToastComponent
+      v-model="toastSuccess"
+      color="green"
+      message="Libro creado exitosamente"
+      :timeout="3000"
+    />
     <CabeceraGenerica
       descriptivo="Introduce los datos del libro"
       titulo="AÑADE UN LIBRO"

@@ -69,7 +69,7 @@
           v-model="toastError"
           color="red"
           message="Fallo al iniciar sesión"
-          :timeout="3000"
+          timeout="3000"
         />
       </v-col>
     </v-row>

@@ -130,25 +130,19 @@
 
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
-    <v-row>
-      <v-col
-        class="d-flex flex-column align-center justify-end h-100 w-60 ga-5"
-      >
-        <ToastComponent
-          v-model="toastError"
-          color="red"
-          message="Error al actualizar el usuario"
-          :timeout="3000"
-        />
-        <ToastComponent
-          v-model="toastSuccess"
-          color="green"
-          message="Usuario actualizado exitosamente"
-          :timeout="3000"
-        />
-      </v-col>
-    </v-row>
-    <CabeceraGenerica descriptivo="Aqui podras ver tus datos  y cambiarlos  si  es necesario" titulo="Perfil" />
+    <ToastComponent
+      v-model="toastError"
+      color="red"
+      message="Error al actualizar el usuario"
+      :timeout="3000"
+    />
+    <ToastComponent
+      v-model="toastSuccess"
+      color="green"
+      message="Usuario actualizado exitosamente"
+      :timeout="3000"
+    />
+    <CabeceraGenerica descriptivo="Aqui podras ver tus datos  y cambiarlos  si  es necesario" titulo="TU PERFIL" />
     <h1 class="text-center">{{ `Hola  ${user.name} ${user.last_name}` }} </h1>
     <img
       alt="Foto de perfil"

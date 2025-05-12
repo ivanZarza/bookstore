@@ -1,5 +1,5 @@
 <script setup>
-  import { reactive } from 'vue';
+  import { reactive, ref } from 'vue';
   import CabeceraGenerica from '@/components/CabeceraGenerica.vue';
   import FormGenerico from '@/components/FormGenerico.vue';
   import BotonGenerico from '@/components/BotonGenerico.vue';
@@ -10,7 +10,8 @@
 
   const bookStore = useBookStore();
   const { updateBook } = bookStore;
-  console.log(bookStore.oneBook);
+  const toastError = ref(false);
+  const toastSuccess = ref(false);
 
   async function editarLibro () {
     const nuevoLibro = {
@@ -25,12 +26,14 @@
     try {
       const response = await updateBook({ book: nuevoLibro });
       if (!response.ok){
+        toastError.value = true;
         throw new Error('Error al actualizar el libro');
       }
       await bookStore.fetchBooks({ id_user: bookStore.oneBook.id_user });
       router.push({ name: '/books/' });
-      console.log(response);
+      toastSuccess.value = true;
     } catch (error) {
+      toastError.value = true;
       console.error('Error de validación:', error);
       return;
     }
@@ -102,6 +105,18 @@
 
 <template>
   <v-container class="d-flex flex-column align-center justify-start h-100 w-60 ga-5">
+    <ToastComponent
+      v-model="toastError"
+      color="red"
+      message="Error al crear el libro"
+      :timeout="3000"
+    />
+    <ToastComponent
+      v-model="toastSuccess"
+      color="green"
+      message="Libro creado exitosamente"
+      :timeout="3000"
+    />
     <CabeceraGenerica
       descriptivo="Introduce los datos del libro"
       titulo="MODIFICAR LIBRO"

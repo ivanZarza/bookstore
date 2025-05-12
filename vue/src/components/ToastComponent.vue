@@ -21,7 +21,7 @@
 
 <template>
   <v-snackbar
-  class="d-flex  align-center justify-center text-center"
+    class="d-flex  align-center justify-center text-center pa-5"
     :color="color"
     :timeout="timeout"
   >
