@@ -43,7 +43,7 @@ html, body {
 
 
 .toast-container .ngx-toastr.toast-denegado {
-  background-color:#cc020288;
+  background-color:#ffc3c3d3;
   color: rgb(255, 0, 0); 
   padding: 10px 10px 10px 56px; 
   border-radius: 10px; 
