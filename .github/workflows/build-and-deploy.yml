@@ -33,7 +33,7 @@ jobs:
       - run: |
           cd vue
           npm install
-          npm run build
+          npm run build.ghPages
 
       # Copy Angular build
       - run: |
