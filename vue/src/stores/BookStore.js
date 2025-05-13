@@ -9,6 +9,7 @@ export const useBookStore = defineStore('bookService', {
     books: {},
     oneBook: {},
     favoritesBooks: {},
+    readBooks: {},
   }),
   getters: {
   },
@@ -93,6 +94,31 @@ export const useBookStore = defineStore('bookService', {
         this.favoritesBooks = data.data;
       } catch (error) {
         console.error('Error fetching favorites:', error.message);
+      }
+    },
+    async changeReadBook (id_user, id_book) {
+      const url = new URL(`${VITE_API_ORIGIN}/read`);
+      return await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ id_user, id_book }),
+      });
+    },
+    async fetchReadBook (id_user) {
+      const url = new URL(`${VITE_API_ORIGIN}/read?id_user=${id_user}`);
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Error fetching read: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log('data', data);
+        this.readBooks = data.data;
+      } catch (error) {
+        console.error('Error fetching read:', error.message);
       }
     },
   },

@@ -33,6 +33,10 @@ const rutas = [
     title: 'LIBROS FAVORITOS',
   },
   {
+    path: '/books/readBooks',
+    title: 'LIBROS LEIDOS',
+  },
+  {
     path: '/logout',
     title: 'CERRAR SESION',
   },

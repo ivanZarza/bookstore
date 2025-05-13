@@ -4,13 +4,13 @@
     <v-img
       class="mb-4"
       cover
-      height="300"
+      height="200"
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
       <v-row class="fill-height d-flex align-center justify-center">
         <v-col class="text-center">
-          <h1 class="text-h2 font-weight-bold text-white">Bienvenido a Mi App</h1>
-          <p class="text-subtitle-1 text-white">Tu solución para [descripción breve de la app]</p>
+          <h1 class="text-h2 font-weight-bold text-white">Bienvenido a tu biblioteca</h1>
+          <p class="text-subtitle-1 text-white">Tu app para crear tu coleccion de libros</p>
         </v-col>
       </v-row>
     </v-img>
@@ -57,8 +57,8 @@
       <v-container>
         <v-row>
           <v-col cols="12" sm="6">
-            <h3 class="text-h6">Mi App</h3>
-            <p>© 2023 Mi App. Todos los derechos reservados.</p>
+            <h3 class="text-h6">BookStore</h3>
+            <p>© 2023 BookStore. Todos los derechos reservados.</p>
           </v-col>
           <v-col class="text-right" cols="12" sm="6">
             <v-btn icon to="https://facebook.com">
@@ -80,19 +80,19 @@
 <script setup>
   const features = [
     {
-      icon: 'mdi-speedometer',
-      title: 'Rápido y eficiente',
-      description: 'Nuestra app está optimizada para ofrecer el mejor rendimiento.',
+      icon: 'mdi-sofa',
+      title: 'Comoda y sencilla',
+      description: 'Bookstore esta pensada para ser facil de usar',
     },
     {
-      icon: 'mdi-shield-check',
-      title: 'Seguridad',
-      description: 'Tus datos están protegidos con los más altos estándares.',
+      icon: 'mdi-heart',
+      title: 'Recuerda tus favoritos',
+      description: 'Agrega tus libros a favoritos para saber los que mas te gustaron',
     },
     {
       icon: 'mdi-account-group',
-      title: 'Fácil de usar',
-      description: 'Una interfaz intuitiva diseñada para todos los usuarios.',
+      title: 'Proximamente',
+      description: 'Pronto podras compartir tus libros favoritos con tus amigos',
     },
   ];
 
@@ -100,12 +100,12 @@
     {
       name: 'Juan Pérez',
       avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-      comment: 'Esta app cambió mi vida. Es increíblemente fácil de usar.',
+      comment: 'Clasifica tus libros como leidos, no leidos o favoritos',
     },
     {
       name: 'Ana Gómez',
       avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
-      comment: 'La mejor solución que he encontrado para [problema que resuelve la app].',
+      comment: 'Organiza tu biblioteca de una manera sencilla y rapida',
     },
   ];
 </script>

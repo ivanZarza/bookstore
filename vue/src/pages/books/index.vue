@@ -43,6 +43,15 @@
       console.error('Error al cambiar el estado de favorito:', error);
     }
   }
+
+  async function cambiarleido (id_user, id_book) {
+    try {
+      await bookStore.changeReadBook(id_user, id_book);
+      await fetchBooks({ id_user });
+    } catch (error) {
+      console.error('Error al cambiar el estado de leído:', error);
+    }
+  }
 </script>
 
 <template>
@@ -98,6 +107,18 @@
             >
               <v-icon color="red">
                 {{ book.favorite === 1 ? 'mdi-heart' : 'mdi-heart-outline' }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              class="position-absolute"
+              color="white"
+              elevation="2"
+              icon
+              style="top: 0; right: 0;"
+              @click="cambiarleido(userStore.user?.id_user, book.id_book)"
+            >
+              <v-icon color="green">
+                {{ book.read === 1 ? 'mdi-check' : 'mdi-check-outline' }}
               </v-icon>
             </v-btn>
           </div>
