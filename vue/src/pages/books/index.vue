@@ -118,7 +118,7 @@
               @click="cambiarleido(userStore.user?.id_user, book.id_book)"
             >
               <v-icon color="green">
-                {{ book.read === 1 ? 'mdi-check' : 'mdi-check-outline' }}
+                {{ book.readed === 1 ? 'mdi-check-circle' : 'mdi-check-circle-outline' }}
               </v-icon>
             </v-btn>
           </div>
