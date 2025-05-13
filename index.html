@@ -11,6 +11,7 @@
           padding: 0;
           height: 100%;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -52,18 +53,16 @@
                 color: white;
             }
           }
-          img {
+          [screenshot] {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
           }
         }
     </style>
 </head>
 <body>
     <h1>bookstore</h1>
-    <div class="angular"></div>
 
     <div bookstore-links>
         <a href="./angular/" bookstore-link>
