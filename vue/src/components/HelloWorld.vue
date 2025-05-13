@@ -7,8 +7,8 @@
   >
     <v-row class="fill-height d-flex align-center justify-center">
       <v-col class="text-center">
-        <h1 class="text-h2 font-weight-bold text-white">Bienvenido a tu biblioteca</h1>
-        <p class="text-subtitle-1 text-white">Tu app para crear tu coleccion de libros</p>
+        <h1 class="text-h3 text-sm-h2 font-weight-bold text-white">Bienvenido a tu biblioteca</h1>
+        <p class="text-subtitle-2 text-sm-subtitle-1 text-white">Tu app para crear tu coleccion de libros</p>
       </v-col>
     </v-row>
   </v-img>
