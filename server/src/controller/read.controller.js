@@ -9,7 +9,7 @@ console.log('id_user', id_user);
       return;
     }
 
-    const sql = 'SELECT * FROM book WHERE id_user = ? AND read = 1';
+    const sql = 'SELECT * FROM book WHERE id_user = ? AND readed = 1';
     const [result] = await pool.query(sql, [id_user]);
 
     res.status(200).json({ ok: true, message: 'Éxito!!', data: result });
@@ -28,7 +28,7 @@ const putRead = async (req, res) => {
   }
 
   try {
-    let sql = 'UPDATE book SET read = NOT read WHERE id_user = ? AND id_book = ?';
+    let sql = 'UPDATE book SET read = NOT readed WHERE id_user = ? AND id_book = ?';
     let [result] = await pool.query(sql, [id_user, id_book]);
 
     res.status(200).json({ ok: true, message: 'Libro actualizado con éxito', data: result });
