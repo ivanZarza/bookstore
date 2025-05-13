@@ -1,19 +1,20 @@
 <template>
+  <v-img
+    class="mb-4 "
+    cover
+    height="200"
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+  >
+    <v-row class="fill-height d-flex align-center justify-center">
+      <v-col class="text-center">
+        <h1 class="text-h2 font-weight-bold text-white">Bienvenido a tu biblioteca</h1>
+        <p class="text-subtitle-1 text-white">Tu app para crear tu coleccion de libros</p>
+      </v-col>
+    </v-row>
+  </v-img>
   <v-container class="fill-height" max-width="900">
     <!-- Encabezado llamativo -->
-    <v-img
-      class="mb-4"
-      cover
-      height="200"
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-    >
-      <v-row class="fill-height d-flex align-center justify-center">
-        <v-col class="text-center">
-          <h1 class="text-h2 font-weight-bold text-white">Bienvenido a tu biblioteca</h1>
-          <p class="text-subtitle-1 text-white">Tu app para crear tu coleccion de libros</p>
-        </v-col>
-      </v-row>
-    </v-img>
+
 
     <!-- Características principales -->
     <v-row class="mt-8">
@@ -24,7 +25,7 @@
         md="4"
         sm="6"
       >
-        <v-card class="pa-4" color="primary" dark>
+        <v-card class="pa-4" dark>
           <v-icon class="mb-2" large>{{ feature.icon }}</v-icon>
           <h3 class="text-h6 font-weight-bold">{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
@@ -53,28 +54,29 @@
     </v-row>
 
     <!-- Pie de página -->
-    <v-footer color="primary" dark>
-      <v-container>
-        <v-row>
-          <v-col cols="12" sm="6">
-            <h3 class="text-h6">BookStore</h3>
-            <p>© 2023 BookStore. Todos los derechos reservados.</p>
-          </v-col>
-          <v-col class="text-right" cols="12" sm="6">
-            <v-btn icon to="https://facebook.com">
-              <v-icon>mdi-facebook</v-icon>
-            </v-btn>
-            <v-btn icon to="https://twitter.com">
-              <v-icon>mdi-twitter</v-icon>
-            </v-btn>
-            <v-btn icon to="https://instagram.com">
-              <v-icon>mdi-instagram</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-footer>
+
   </v-container>
+  <v-footer color="indigo-darken-4 ">
+    <v-container>
+      <v-row class="mb-12">
+        <v-col cols="12" sm="6">
+          <h3 class="text-h6">BookStore</h3>
+          <p>© 2023 BookStore. Todos los derechos reservados.</p>
+        </v-col>
+        <v-col class="text-right" cols="12" sm="6">
+          <v-btn icon to="https://facebook.com">
+            <v-icon>mdi-facebook</v-icon>
+          </v-btn>
+          <v-btn icon to="https://twitter.com">
+            <v-icon>mdi-twitter</v-icon>
+          </v-btn>
+          <v-btn icon to="https://instagram.com">
+            <v-icon>mdi-instagram</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-footer>
 </template>
 
 <script setup>
