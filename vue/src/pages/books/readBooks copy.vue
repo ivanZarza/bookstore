@@ -18,6 +18,15 @@
       console.error('Error al cambiar el estado de leido:', error);
     }
   }
+
+  async function cambiarleido (id_user, id_book) {
+    try {
+      await bookStore.changeReadBook(id_user, id_book);
+      await fetchReadBook( id_user );
+    } catch (error) {
+      console.error('Error al cambiar el estado de leido:', error);
+    }
+  }
 </script>
 
 <template>
@@ -89,7 +98,7 @@
               @click="cambiarleido(userStore.user?.id_user, book.id_book)"
             >
               <v-icon color="green">
-                {{ book.read === 1 ? 'mdi-check' : 'mdi-check-outline' }}
+                {{ book.read === 1 ? 'mdi-check-circle' : 'mdi-check-circle-outline' }}
               </v-icon>
             </v-btn>
           </div>

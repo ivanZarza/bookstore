@@ -43,7 +43,7 @@
     <v-row class="mt-8">
       <v-col v-for="testimonial in testimonials" :key="testimonial.name" cols="12" sm="6">
         <v-card class="pa-4">
-          <v-avatar class="mb-2" size="56">
+          <v-avatar class="mb-2" size="80">
             <img alt="Avatar" :src="testimonial.avatar">
           </v-avatar>
           <h3 class="text-h6 font-weight-bold">{{ testimonial.name }}</h3>
@@ -98,13 +98,13 @@
 
   const testimonials = [
     {
-      name: 'Juan Pérez',
-      avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+      name: 'Organizate con Bookstore',
+      avatar: 'https://images.unsplash.com/photo-1602722053020-af31042989d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZXN0YW50ZSUyMHBhcmElMjBsaWJyb3xlbnwwfHwwfHx8MA%3D%3D',
       comment: 'Clasifica tus libros como leidos, no leidos o favoritos',
     },
     {
-      name: 'Ana Gómez',
-      avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
+      name: 'Facil de usar',
+      avatar: 'https://images.freeimages.com/images/premium/previews/7885/7885842-stacked-books.jpg',
       comment: 'Organiza tu biblioteca de una manera sencilla y rapida',
     },
   ];
