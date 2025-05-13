@@ -19,6 +19,12 @@
           color: #2c3e50;
           background-color: #f5f5f5;
         }
+        [text-header] {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
         [titulo] {
           font-size: 2rem;  
         }
@@ -70,12 +76,13 @@
     </style>
 </head>
 <body>
-  div
+  <div text-header>
   <div titulo>
     <h1>bookstore</h1>
   </div>
   <div descripcion>
     <p>Aplicación de coleccion de libros, desarrollada con Angular, React y Vue.js. Cada una de las aplicaciones tiene su propio diseño y funcionalidad, pero todas comparten la misma base de datos y API.</p>
+  </div>
   </div>
     <div bookstore-links>
         <a href="./angular/" bookstore-link>
