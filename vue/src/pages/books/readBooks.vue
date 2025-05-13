@@ -34,7 +34,7 @@
   <v-container>
     <CabeceraGenerica
       descriptivo="Aqui puedes ver todos los libros que has leido"
-      titulo="TUS FAVORITOS"
+      titulo="TUS LIBROS LEIDOS"
     />
     <v-row>
       <v-col class="d-flex justify-center">

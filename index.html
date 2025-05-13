@@ -4,10 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bookstore</title>
+
+    <style rel="stylesheet">
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: Avenir, Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          color: #2c3e50;
+          background-color: #f5f5f5;
+        }
+
+        [bookstore-links] {
+          display: flex;
+          gap: 24px;
+        }
+
+        [bookstore-link] {
+          display: block;
+          width: 240px;
+          text-decoration: none;
+          aspect-ratio: 16 / 9;
+          background-color: red;
+          position: relative;
+
+          [logo] {
+            position: absolute;
+            bottom: -25%;
+            right: 8%;
+            width: 30%;
+            z-index: 1;
+          }
+
+          &:hover {
+            &::after {
+                content: 'Ver sitio';
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+            }
+          }
+        }
+    </style>
 </head>
 <body>
-    <a href="./angular/">angular</a>
-    <a href="./react/">react</a>
-    <a href="./vue/">vue</a>
+    <h1>bookstore</h1>
+    <div class="angular"></div>
+
+    <div bookstore-links>
+        <a href="./angular/" bookstore-link>
+            <img screenshot src="./_assets/images/angular-desktop.jpg" alt="">
+            <img logo src="./_assets/icons/angular-logo.svg" alt="">
+        </a>
+        <a href="./react/" bookstore-link>
+            <img screenshot src="./_assets/images/react-desktop.jpg" alt="">
+            <img logo src="./_assets/icons/react-logo.svg" alt="">
+        </a><a href="./vue/" bookstore-link>
+            <img screenshot src="./_assets/images/vue-desktop.jpg" alt="">
+            <img logo src="./_assets/icons/vue-logo.svg" alt="">
+        </a>
+    </div>
 </body>
 </html>

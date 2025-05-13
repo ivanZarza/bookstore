@@ -59,11 +59,11 @@
   <v-footer color="indigo-darken-4 ">
     <v-container>
       <v-row class="mb-12">
-        <v-col cols="12" sm="6">
-          <h3 class="text-h6">BookStore</h3>
-          <p>© 2023 BookStore. Todos los derechos reservados.</p>
+        <v-col class="text-center text-sm-left" cols="12" sm="6">
+          <h3 class="text-h8 text-sm-h6">BookStore</h3>
+          <p class="text-caption text-sm-h8">© 2023 BookStore. Todos los derechos reservados.</p>
         </v-col>
-        <v-col class="text-right" cols="12" sm="6">
+        <v-col class="text-center text-sm-right" cols="12" sm="6">
           <v-btn icon to="https://facebook.com">
             <v-icon>mdi-facebook</v-icon>
           </v-btn>

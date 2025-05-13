@@ -53,6 +53,8 @@ jobs:
       # Copy index.html
       - run: |
           cp index.html dist/
+          mkdir -p dist/_assets
+          cp -r ./_assets/* dist/_assets/
 
       # Upload static files as artifact
       - name: Upload static files as artifact
