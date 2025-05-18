@@ -1,101 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bookstore</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bookstore</title>
 
-    <style rel="stylesheet">
-        html, body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
+  <style rel="stylesheet">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #2c3e50;
+      background-color: #f5f5f5;
+    }
+
+    [text-header] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    [titulo] {
+      font-size: 2rem;
+    }
+
+    [descripcion] {
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    [bookstore-links] {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    [bookstore-link] {
+      display: block;
+      width: 340px;
+      text-decoration: none;
+      aspect-ratio: 16 / 9;
+      background-color: transparent;
+      position: relative;
+      color: #2c3e50;
+
+      [logo] {
+        position: absolute;
+        bottom: 55%;
+        right: 8%;
+        width: 30%;
+        z-index: 1;
+      }
+
+      &:hover {
+        &::after {
+          content: 'Ver sitio';
           display: flex;
-          flex-direction: column;
           justify-content: center;
           align-items: center;
-          font-family: Avenir, Helvetica, Arial, sans-serif;
-          font-size: 14px;
-          color: #2c3e50;
-          background-color: #f5f5f5;
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
         }
-        [text-header] {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        [titulo] {
-          font-size: 2rem;  
-        }
+      }
+    }
 
-        [descripcion] {
-          font-size: 1.2rem;
-          text-align: center;
-          max-width: 600px;
+    [screenshot] {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center
+    }
+
+    @media (max-width: 600px) {
+      [titulo] {
+        font-size: 1.5rem;
+      }
+
+      [descripcion] {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+
+      [bookstore-link] {
+        width: 100%;
+        max-width: 300px;
+
+        [logo] {
+          bottom: 60%;
         }
+      }
+    }
 
-        [bookstore-links] {
-          display: flex;
-          gap: 24px;
-        }
-
-        [bookstore-link] {
-          display: block;
-          width: 240px;
-          text-decoration: none;
-          aspect-ratio: 16 / 9;
-          background-color: trasparent;
-          position: relative;
-
-          [logo] {
-            position: absolute;
-            bottom: -25%;
-            right: 8%;
-            width: 30%;
-            z-index: 1;
-          }
-
-          &:hover {
-            &::after {
-                content: 'Ver sitio';
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-                inset: 0;
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-            }
-          }
-          [screenshot] {
-            width: 100%;
-            height: 100%;
-          }
-        }
-    </style>
+  </style>
 </head>
+
 <body>
-  <div text-header>
-  <div titulo>
-    <h1>bookstore</h1>
-  </div>
-  <div descripcion>
-    <p>Aplicación de coleccion de libros, desarrollada con Angular, React y Vue.js. Cada una de las aplicaciones tiene su propio diseño y funcionalidad, pero todas comparten la misma base de datos y API.</p>
-  </div>
-  </div>
-    <div bookstore-links>
-        <a href="./angular/" bookstore-link>
-            <img screenshot src="./_assets/images/angular-desktop.png" alt="">
-            <img logo src="./_assets/icons/angular-logo.svg" alt="">
-        </a>
-        <a href="./react/" bookstore-link>
-            <img screenshot src="./_assets/images/react-desktop.png" alt="">
-            <img logo src="./_assets/icons/react-logo.svg" alt="">
-        </a><a href="./vue/" bookstore-link>
-            <img screenshot src="./_assets/images/vue-desktop.png" alt="">
-            <img logo src="./_assets/icons/vue-logo.svg" alt="">
-        </a>
+  <header text-header>
+    <div titulo>
+      <h1>BOOKSTORE</h1>
     </div>
+    <div descripcion>
+      <p>Aplicación de coleccion de libros, desarrollada con Angular, React y Vue.js. Cada una de las aplicaciones tiene
+        su propio diseño y funcionalidad, pero todas comparten la misma base de datos y API.</p>
+    </div>
+  </header>
+  <div bookstore-links>
+    <a href="./angular/" bookstore-link>
+      <img screenshot src="./_assets/images/angular-desktop.png" alt="">
+      <img logo src="./_assets/icons/angular-logo.svg" alt="">
+      <div>
+        <h2>Angular</h2>
+        <p>
+          Aplicación de colección de libros desarrollada con **Angular**, un framework robusto y escalable. Esta
+          aplicación utiliza **TypeScript** como lenguaje principal, lo que permite un desarrollo más estructurado y
+          seguro. Además, se implementaron **componentes reutilizables** y un sistema de **enrutamiento dinámico** para
+          una navegación fluida. La aplicación está diseñada con un enfoque en la **reactividad** y el **rendimiento**,
+          aprovechando las capacidades de **RxJS** para manejar flujos de datos asíncronos. También se integraron
+          servicios para consumir la API compartida, garantizando una comunicación eficiente con la base de datos. El
+          diseño sigue las mejores prácticas de Angular, asegurando una experiencia de usuario moderna y funcional.
+        </p>
+      </div>
+    </a>
+    <a href="./react/" bookstore-link>
+      <img screenshot src="./_assets/images/react-desktop.png" alt="">
+      <img logo src="./_assets/icons/react-logo.svg" alt="">
+      <div>
+        <h2>React</h2>
+        <p>
+          Aplicación de colección de libros desarrollada con **React** y **TypeScript**, utilizando **JSX** para la
+          creación de componentes dinámicos y reutilizables. La validación de formularios se implementó de manera
+          versátil, combinando el uso de **React Hook Form**, **Zod** para validaciones basadas en esquemas, y
+          validaciones personalizadas hechas a mano. El diseño de la interfaz se realizó con **Tailwind CSS**, lo que
+          permitió un desarrollo rápido y un diseño moderno y responsivo. La aplicación sigue un enfoque modular,
+          asegurando una experiencia de usuario fluida y un código mantenible.
+        </p>
+      </div>
+    </a>
+    <a href="./vue/" bookstore-link>
+      <img screenshot src="./_assets/images/vue-desktop.png" alt="">
+      <img logo src="./_assets/icons/vue-logo.svg" alt="">
+      <div>
+        <h2>Vue</h2>
+        <p>
+          Aplicación de colección de libros desarrollada con **Vue**, aprovechando mis conocimientos previos en este
+          framework. Para el diseño de la interfaz, se utilizó **Vuetify**, un poderoso sistema de componentes que
+          permitió crear una experiencia de usuario moderna, responsiva y consistente. La aplicación sigue un enfoque
+          basado en componentes reutilizables, lo que facilita la escalabilidad y el mantenimiento del código. Además,
+          se
+          implementaron funcionalidades dinámicas y reactivas, características clave de Vue, para garantizar una
+          navegación fluida y una interacción intuitiva con el usuario.
+        </p>
+      </div>
+    </a>
+  </div>
 </body>
+
 </html>
