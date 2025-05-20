@@ -1,8 +1,8 @@
 const { pool } = require('../database');
 const bcrypt = require('bcrypt');
-/* const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-const claveJWT = process.env.claveJWT */
+const claveJWT = process.env.claveJWT;
 
 const postRegister = async (req, res) => {
   let { name, last_name, email, photo, password } = req.body;
@@ -26,7 +26,7 @@ const postRegister = async (req, res) => {
     let [usuario] = await pool.query(encontrarUsuario, [email]);
     if (usuario.length > 0) {
       res.status(400).json({ ok: false, message: 'Usuario ya existe' });
-      return
+      return;
     }
 
     password = bcrypt.hashSync(password, 10)
@@ -34,9 +34,19 @@ const postRegister = async (req, res) => {
     let sql = 'INSERT INTO user (name, last_name, email, photo, password) VALUES (?, ?, ?, ?, ?)';
     let [result] = await pool.query(sql, [name, last_name, email, photo, password]);
     let id = result.insertId;
-/*     let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' }); */
-/*     res.cookie('autentificacion', token, { httpOnly: true, secure: true, sameSite: 'none' });
- */    res.status(200).json({ ok: true, message: 'Exito!!', data: result });
+
+    // Generar el token JWT válido por 1 hora
+    let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' });
+
+    // Enviar el token como cookie httpOnly
+    res.cookie('autentificacion', token, {
+      httpOnly: true,
+      secure: false, // Cambia a true si estás usando HTTPS
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 1000 // 1 hora en milisegundos
+    });
+
+    res.status(200).json({ ok: true, message: 'Exito!!', data: result });
     return;
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
