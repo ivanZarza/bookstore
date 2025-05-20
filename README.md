@@ -13,9 +13,5 @@ Este proyecto es una aplicación de colección de libros que desarrollé para pr
 - Uso de tecnologías modernas como **TypeScript**, **Tailwind CSS** y **Vuetify**.
 - Despliegues automáticos con **GitHub Actions**.
 
----
 
-## 🖼️ **Capturas de pantalla**
-### Página principal
-![Bookstore Home](./_assets/images/bookstore-home.png)
 
