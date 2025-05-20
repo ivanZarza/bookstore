@@ -28,11 +28,10 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-
     }
 
     [titulo] {
-      font-size: 2rem;  
+      font-size: 2rem;
     }
 
     [descripcion] {
@@ -46,6 +45,7 @@
       gap: 50px 24px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: 50px;
     }
 
     [bookstore-link] {
@@ -53,11 +53,9 @@
       width: 340px;
       text-decoration: none;
       aspect-ratio: 16 / 9;
-      background-color: rgb(219, 219, 219);
+      background-color: transparent;
       position: relative;
       color: #2c3e50;
-      padding: 20px;
-
 
       [logo] {
         position: absolute;
@@ -85,7 +83,7 @@
       width: 100%;
       height: auto;
       object-fit: cover;
-      object-position: center
+      object-position: center;
     }
 
     @media (max-width: 600px) {
@@ -107,7 +105,6 @@
         }
       }
     }
-
   </style>
 </head>
 
@@ -117,55 +114,54 @@
       <h1>BOOKSTORE</h1>
     </div>
     <div descripcion>
-      <p>Aplicación de coleccion de libros, desarrollada con Angular, React y Vue.js. Cada una de las aplicaciones tiene
-        su propio diseño y funcionalidad, pero todas comparten la misma base de datos y API.</p>
+      <p>Esta es una aplicación de colección de libros que desarrollé para practicar y mejorar mis habilidades en
+        Angular, React y Vue.js. Cada una de las aplicaciones tiene su propio diseño y funcionalidad, pero todas comparten
+        la misma base de datos y API. El backend está desplegado en <strong>Vercel</strong>, y las diferentes páginas de frontend
+        están configuradas con <strong>GitHub Actions</strong> para despliegues automáticos. Este proyecto me permitió explorar
+        conceptos avanzados de desarrollo frontend y backend.</p>
     </div>
   </header>
   <div bookstore-links>
     <a href="./angular/" bookstore-link>
-      <img screenshot src="./_assets/images/angular-desktop.png" alt="">
-      <img logo src="./_assets/icons/angular-logo.svg" alt="">
+      <img screenshot src="./_assets/images/angular-desktop.png" alt="Captura de pantalla de la aplicación Angular">
+      <img logo src="./_assets/icons/angular-logo.svg" alt="Logo de Angular">
       <div>
         <h2>Angular</h2>
         <p>
-          Aplicación de colección de libros desarrollada con <strong>Angular</strong>, un framework robusto y escalable. Esta
-          aplicación utiliza <strong>TypeScript</strong> como lenguaje principal, lo que permite un desarrollo más estructurado y
-          seguro. Además, se implementaron <strong>componentes reutilizables</strong> y un sistema de <strong>enrutamiento dinámico</strong> para
-          una navegación fluida. La aplicación está diseñada con un enfoque en la <strong>reactividad</strong> y el <strong>rendimiento</strong>,
-          aprovechando las capacidades de <strong>RxJS</strong> para manejar flujos de datos asíncronos. También se integraron
-          servicios para consumir la API compartida, garantizando una comunicación eficiente con la base de datos. El
-          diseño sigue las mejores prácticas de Angular, asegurando una experiencia de usuario moderna y funcional.
+          Desarrollé esta aplicación con <strong>Angular</strong>, un framework robusto y escalable. Utilicé <strong>TypeScript</strong> como
+          lenguaje principal, lo que me permitió escribir un código más estructurado y seguro. Implementé
+          <strong>componentes reutilizables</strong> y un sistema de <strong>enrutamiento dinámico</strong> para una navegación fluida.
+          También aproveché las capacidades de <strong>RxJS</strong> para manejar flujos de datos asíncronos y aseguré una
+          comunicación eficiente con la API compartida. Este proyecto me ayudó a profundizar en las mejores prácticas de
+          Angular y a crear una experiencia de usuario moderna y funcional.
         </p>
       </div>
     </a>
     <a href="./react/" bookstore-link>
-      <img screenshot src="./_assets/images/react-desktop.png" alt="">
-      <img logo src="./_assets/icons/react-logo.svg" alt="">
+      <img screenshot src="./_assets/images/react-desktop.png" alt="Captura de pantalla de la aplicación React">
+      <img logo src="./_assets/icons/react-logo.svg" alt="Logo de React">
       <div>
         <h2>React</h2>
         <p>
-          Aplicación de colección de libros desarrollada con <strong>React</strong> y <strong>TypeScript</strong>, utilizando <strong>JSX</strong> para la
-          creación de componentes dinámicos y reutilizables. La validación de formularios se implementó de manera
-          versátil, combinando el uso de <strong>React Hook Form</strong>, <strong>Zod</strong> para validaciones basadas en esquemas, y
-          validaciones personalizadas hechas a mano. El diseño de la interfaz se realizó con <strong>Tailwind CSS</strong>, lo que
-          permitió un desarrollo rápido y un diseño moderno y responsivo. La aplicación sigue un enfoque modular,
-          asegurando una experiencia de usuario fluida y un código mantenible.
+          Esta aplicación fue desarrollada con <strong>React</strong> y <strong>TypeScript</strong>, utilizando <strong>JSX</strong> para crear
+          componentes dinámicos y reutilizables. Practiqué la validación de formularios combinando <strong>React Hook Form</strong>,
+          <strong>Zod</strong> para validaciones basadas en esquemas, y validaciones personalizadas hechas a mano. Además, utilicé
+          <strong>Tailwind CSS</strong> para diseñar una interfaz moderna y responsiva. Este proyecto me permitió explorar un
+          enfoque modular y asegurar una experiencia de usuario fluida y un código mantenible.
         </p>
       </div>
     </a>
     <a href="./vue/" bookstore-link>
-      <img screenshot src="./_assets/images/vue-desktop.png" alt="">
-      <img logo src="./_assets/icons/vue-logo.svg" alt="">
+      <img screenshot src="./_assets/images/vue-desktop.png" alt="Captura de pantalla de la aplicación Vue">
+      <img logo src="./_assets/icons/vue-logo.svg" alt="Logo de Vue">
       <div>
         <h2>Vue</h2>
         <p>
-          Aplicación de colección de libros desarrollada con <strong>Vue</strong>, aprovechando mis conocimientos previos en este
-          framework. Para el diseño de la interfaz, se utilizó <strong>Vuetify</strong>, un poderoso sistema de componentes que
-          permitió crear una experiencia de usuario moderna, responsiva y consistente. La aplicación sigue un enfoque
-          basado en componentes reutilizables, lo que facilita la escalabilidad y el mantenimiento del código. Además,
-          se
-          implementaron funcionalidades dinámicas y reactivas, características clave de Vue, para garantizar una
-          navegación fluida y una interacción intuitiva con el usuario.
+          En esta aplicación utilicé <strong>Vue</strong>, aprovechando mis conocimientos previos en este framework. Para el diseño
+          de la interfaz, implementé <strong>Vuetify</strong>, un sistema de componentes que me permitió crear una experiencia
+          de usuario moderna y responsiva. Este proyecto me ayudó a practicar el enfoque basado en componentes
+          reutilizables y a implementar funcionalidades dinámicas y reactivas, características clave de Vue. Además,
+          exploré cómo garantizar una navegación fluida y una interacción intuitiva con el usuario.
         </p>
       </div>
     </a>
