@@ -1,7 +1,7 @@
-/* require('dotenv').config();*/
- const express = require("express");
+require('dotenv').config();
+const express = require("express");
 const cors = require("cors");
-/* const cookieParser = require("cookie-parser"); */
+const cookieParser = require("cookie-parser"); 
 const loginRouters = require("./routers/login.router");
 const logoutRouters = require("./routers/logout.router");
 const registerRouters = require("./routers/register.router");
@@ -12,8 +12,8 @@ const favoriteRouters = require("./routers/favorite.router");
 const readRouters = require("./routers/read.router");
 
 
-/* console.log('claveJWT', process.env.claveJWT)
- */
+console.log('linea 15 app.js claveJWT', process.env.claveJWT)
+
 const app = express();
 
 app.set("port", process.env.PORT || 3000);
@@ -64,7 +64,7 @@ app.set("port", process.env.PORT || 3000);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-/* app.use(cookieParser()); */
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   console.log("Peticion recibida del cliente");

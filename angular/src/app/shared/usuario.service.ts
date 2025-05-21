@@ -108,9 +108,17 @@ export class UsuarioService {
   }
 
 
-  public logout() {
-      this.logueado = false;
-      this.user = new User(null, '', '', '', '', '');
-      globalThis.localStorage?.removeItem('user');
+  public async logout() {
+    try {
+      await fetch(`${this.url}/logout`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch (error) {
+      console.error('Error al cerrar sesión en el backend:', error);
+    }
+    this.logueado = false;
+    this.user = new User(null, '', '', '', '', '');
+    globalThis.localStorage?.removeItem('user');
   }
 }

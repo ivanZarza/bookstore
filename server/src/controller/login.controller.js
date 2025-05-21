@@ -20,7 +20,7 @@ const postLogin = async (req, res) => {
     }
 
     let passwordHaseado = usuarioRequerido[0].password;
-    console.log('JWT Secret:', claveJWT); 
+    console.log('linea 23 de la ruta login JWT Secret:', claveJWT); 
     const isMatch = await bcrypt.compare(password, passwordHaseado);
     if (!isMatch) {
       return res.status(400).json({ ok: false, message: 'Contraseña incorrecta' });
