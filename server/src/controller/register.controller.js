@@ -41,8 +41,8 @@ const postRegister = async (req, res) => {
     // Enviar el token como cookie httpOnly
     res.cookie('autentificacion', token, {
       httpOnly: true,
-      secure: false, // Cambia a true si estás usando HTTPS
-      sameSite: 'lax',
+      secure: true, // Cambia a true si estás usando HTTPS
+      sameSite: 'none', // Cambia a 'lax' si no estás usando HTTPS
       maxAge: 60 * 60 * 1000 // 1 hora en milisegundos
     });
 

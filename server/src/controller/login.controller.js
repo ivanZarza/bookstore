@@ -36,8 +36,8 @@ const postLogin = async (req, res) => {
     // Enviar el token como cookie httpOnly
     res.cookie('autentificacion', token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       maxAge: 60 * 60 * 1000 
     });
 
