@@ -2,7 +2,11 @@ const { pool } = require('../database');
 
 
 const getbooks = async (req, res) => {
-  let { id_user, id_book } = req.query;
+  let { /* id_user, */ id_book } = req.query;
+  let id_user = req.user.id_user;
+  console.log('id_user', id_user, 'id_book', id_book);
+  console.log('getbooks', req.user);
+  console.log('getbooks', req.query);
   try {
     let sql;
     if ((id_user === null || id_user === undefined)) {

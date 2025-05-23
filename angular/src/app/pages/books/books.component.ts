@@ -31,7 +31,7 @@ export class BooksComponent {
   public async buscarLibro() {
     try {
       if (this.libroId) {
-        await this.serviceBookService.getBooks({ id_book: this.libroId, id_user: this.usuarioService.user.id_user });
+        await this.serviceBookService.getBooks({ id_book: this.libroId, /* id_user: this.usuarioService.user.id_user */ });
         this.arrayBooks = this.serviceBookService.arrayBooks;
 
         if (this.arrayBooks.length === 0) {
@@ -44,7 +44,7 @@ export class BooksComponent {
           });
         }
       } else {
-        await this.serviceBookService.getBooks({ id_user: this.usuarioService.user.id_user });
+        await this.serviceBookService.getBooks({ /* id_user: this.usuarioService.user.id_user  */});
         this.arrayBooks = this.serviceBookService.arrayBooks;
 
         if (this.arrayBooks.length === 0) {

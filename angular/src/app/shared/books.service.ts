@@ -18,12 +18,12 @@ export class ServiceBookService {
     this.respuesta 
   }
 
-  public async getBooks({ id_user = null, id_book = null }= {}) {
+  public async getBooks({ /* id_user = null, */ id_book = null }= {}) {
     const url = new URL(`${this.url}/books`);
     try {
-      if(id_user) {
+/*       if(id_user) {
       url.searchParams.append('id_user', id_user);
-    }
+    } */
     if(id_book) {
       url.searchParams.append('id_book', id_book);
     }

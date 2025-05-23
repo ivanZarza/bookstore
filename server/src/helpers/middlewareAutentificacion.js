@@ -46,8 +46,8 @@ async function verificarToken(req, res, next) {
       secure: false,
       sameSite: 'lax'
     });
+        console.log('linea 50 middleware token no valido');
     return res.status(401).json({ ok: false, message: 'Token no valido' });
-    console.log('linea 50 middleware token no valido');
   }
 }
 
