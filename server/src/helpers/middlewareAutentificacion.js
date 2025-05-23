@@ -20,7 +20,7 @@ async function verificarToken(req, res, next) {
       res.clearCookie('autentificacion', {
         httpOnly: true,
         secure: true,
-        sameSite: 'lax'
+        sameSite: 'none'
       });
             console.log('linea 26 middleware No existe el usuario');
       return res.status(401).json({ ok: false, message: 'Usuario del token no existe' });
@@ -30,7 +30,7 @@ async function verificarToken(req, res, next) {
       res.clearCookie('autentificacion', {
         httpOnly: true,
         secure: true,
-        sameSite: 'lax'
+        sameSite: 'none'
       });
       console.log('linea 33', user[0][0].email, decoded.email);
       return res.status(401).json({ ok: false, message: 'Verificacion del token negativa' });
@@ -44,7 +44,7 @@ async function verificarToken(req, res, next) {
     res.clearCookie('autentificacion', {
       httpOnly: true,
       secure: true,
-      sameSite: 'lax'
+      sameSite: 'none'
     });
         console.log('linea 50 middleware token no valido');
     return res.status(401).json({ ok: false, message: 'Token no valido' });
