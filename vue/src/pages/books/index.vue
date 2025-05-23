@@ -10,7 +10,7 @@
   const { fetchBooks, getOneBook } = bookStore;
   const showDialog = ref(false);
   const libroAEliminar = ref(null);
-  fetchBooks({ id_user: userStore.user?.id_user });
+  fetchBooks();
 
   function editarLibro (book) {
     getOneBook(book);
@@ -23,7 +23,7 @@
       return;
     }
     try {
-      const response = await bookStore.deleteBook(libroAEliminar.value, userStore.user?.id_user);
+      const response = await bookStore.deleteBook(libroAEliminar.value);
       if (!response.ok) {
         throw new Error('Error al eliminar el libro');
       }
@@ -35,19 +35,19 @@
     }
   }
 
-  async function cambiarFavorito (id_user, id_book) {
+  async function cambiarFavorito (id_book) {
     try {
-      await bookStore.changeFavorite(id_user, id_book);
-      await fetchBooks({ id_user });
+      await bookStore.changeFavorite( id_book);
+      await fetchBooks();
     } catch (error) {
       console.error('Error al cambiar el estado de favorito:', error);
     }
   }
 
-  async function cambiarleido (id_user, id_book) {
+  async function cambiarleido (id_book) {
     try {
-      await bookStore.changeReadBook(id_user, id_book);
-      await fetchBooks({ id_user });
+      await bookStore.changeReadBook( id_book);
+      await fetchBooks();
     } catch (error) {
       console.error('Error al cambiar el estado de leído:', error);
     }

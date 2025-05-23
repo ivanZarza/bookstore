@@ -1,7 +1,7 @@
 const { pool } = require('../database');
 
 const getFavorites = async (req, res) => {
-  let { id_user } = req.query;
+  let { id_user } = req.user;
 console.log('id_user', id_user);
   try {
     if (!id_user) {
@@ -19,7 +19,8 @@ console.log('id_user', id_user);
 };
 
 const putFavorites = async (req, res) => {
-  let { id_book, id_user } = req.body;
+  let { id_book } = req.body;
+  let { id_user } = req.user;
   console.log('id_user', id_user, 'id_book', id_book);
   
   if (!id_user || !id_book) {
