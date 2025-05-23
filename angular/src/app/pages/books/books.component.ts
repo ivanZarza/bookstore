@@ -66,7 +66,7 @@ export class BooksComponent {
 
   public async borrarLibro(id_libro: number) {
     console.log('Borrando libro con id: ', id_libro);
-    await this.serviceBookService.delete(id_libro,this.usuarioService.user.id_user);
+    await this.serviceBookService.delete(id_libro,/* this.usuarioService.user.id_user */);
     if (this.serviceBookService.respuesta !== 200) {
       this.toastr.error('Error al borrar el libro', 'ERROR', {
         toastClass: 'ngx-toastr toast-denegado'

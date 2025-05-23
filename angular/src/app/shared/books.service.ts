@@ -12,8 +12,8 @@ export class ServiceBookService {
   public respuesta: number;
 
   constructor() {
-    this.url = 'http://localhost:3000';
-    // this.url = 'https://bookstore-server-seven.vercel.app';
+    // this.url = 'http://localhost:3000';
+    this.url = 'https://bookstore-server-seven.vercel.app';
     this.arrayBooks = null;
     this.respuesta 
   }
@@ -86,7 +86,7 @@ export class ServiceBookService {
 
   }
 
-  public async delete(id_book: number, id_user: number) {
+  public async delete(id_book: number/* , id_user: number */) {
     try {
       const response = await fetch(`${this.url}/books`, {
         method: 'DELETE',
@@ -94,7 +94,7 @@ export class ServiceBookService {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ id_book , id_user })
+        body: JSON.stringify({ id_book /* , id_user  */})
       });
       if (!response) {
         throw new Error('Error en la solicitud');

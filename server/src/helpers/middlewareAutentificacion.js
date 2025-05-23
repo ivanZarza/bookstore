@@ -19,7 +19,7 @@ async function verificarToken(req, res, next) {
     if (user.length === 0) {
       res.clearCookie('autentificacion', {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: 'lax'
       });
             console.log('linea 26 middleware No existe el usuario');
@@ -29,7 +29,7 @@ async function verificarToken(req, res, next) {
     if (user[0][0].email !== decoded.email) {
       res.clearCookie('autentificacion', {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: 'lax'
       });
       console.log('linea 33', user[0][0].email, decoded.email);
@@ -43,7 +43,7 @@ async function verificarToken(req, res, next) {
   } catch (error) {
     res.clearCookie('autentificacion', {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'lax'
     });
         console.log('linea 50 middleware token no valido');

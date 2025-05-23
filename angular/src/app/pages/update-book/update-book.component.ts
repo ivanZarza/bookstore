@@ -33,7 +33,7 @@ export class UpdateBookComponent {
         toastClass: 'ngx-toastr toast-denegado'})
         return
     }
-    await this.serviceBookService.getBooks({ id_book: this.id_book , id_user: this.usuarioService.user.id_user });
+    await this.serviceBookService.getBooks({ id_book: this.id_book /* , id_user: this.usuarioService.user.id_user */ });
     console.log(this.serviceBookService.arrayBooks);
     if (this.serviceBookService.arrayBooks.length === 0) {
       this.toastr.error('No se encontró el libro');
