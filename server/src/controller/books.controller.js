@@ -2,38 +2,39 @@ const { pool } = require('../database');
 
 
 const getbooks = async (req, res) => {
-  let { /* id_user, */ id_book } = req.query;
+  let { id_book } = req.query;
   let id_user = req.user.id_user;
   console.log('id_user', id_user, 'id_book', id_book);
-  console.log('getbooks', req.user);
-  console.log('getbooks', req.query);
   try {
-    let sql;
-    if ((id_user === null || id_user === undefined)) {
+    let sql, result;
+    if (id_user == null) {
       return res.status(401).json({ ok: false, message: 'Inicia sesion' });
     }
 
-
     if (id_user && id_book) {
       sql = 'SELECT * FROM book WHERE id_book = ? AND id_user = ?';
-      let [result] = await pool.query(sql, [id_book, id_user]);
+      [result] = await pool.query(sql, [id_book, id_user]);
       if (result.length === 0) {
         return res.status(404).json({ ok: false, message: 'No se encontro el libro' });
       }
-      res.status(200).json({ ok: true, message: 'Exito!!', data: result });
+      return res.status(200).json({ ok: true, message: 'Exito!!', data: result });
     }
 
-    if (id_user && (id_book = null || id_book === undefined)) {
+    if (id_user && !id_book) {
       sql = 'SELECT * FROM book WHERE id_user = ?';
-      let [result] = await pool.query(sql, id_user);
-      res.status(200).json({ ok: true, message: 'Exito!!', data: result });
+      [result] = await pool.query(sql, [id_user]);
+      return res.status(200).json({ ok: true, message: 'Exito!!', data: result });
     }
 
-    if (id_book && (id_user === null || id_user === undefined)) {
+    // Si solo hay id_book pero no id_user (caso raro porque usas auth)
+    if (id_book && !id_user) {
       sql = 'SELECT * FROM book WHERE id_book = ?';
-      let [result] = await pool.query(sql, id_book);
-      res.status(200).json({ ok: true, message: 'Exito!!', data: result });
+      [result] = await pool.query(sql, [id_book]);
+      return res.status(200).json({ ok: true, message: 'Exito!!', data: result });
     }
+
+    // Si no hay parámetros válidos
+    return res.status(400).json({ ok: false, message: 'Parámetros insuficientes' });
 
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });

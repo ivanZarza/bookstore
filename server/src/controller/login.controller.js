@@ -5,6 +5,10 @@ const claveJWT = process.env.claveJWT;
 
 const postLogin = async (req, res) => {
   let { email, password } = req.body;
+  console.log(req.body, {
+    email: !email,
+    password: !password
+  });
   if (!email || !password) {
     res.status(400).json({ ok: false, message: 'Faltan datos' });
     return;
