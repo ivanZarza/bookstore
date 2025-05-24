@@ -42,7 +42,7 @@ const postLogin = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      maxAge: /* 60 * 60 * */ 10000 
+      maxAge: 60 * 60 * 1000 
     });
 
     return res.status(200).json({ ok: true, message: 'Éxito!!', data: result });

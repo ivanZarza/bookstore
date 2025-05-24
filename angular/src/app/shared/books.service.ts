@@ -21,7 +21,7 @@ export class ServiceBookService {
   public async getBooks({ /* id_user = null, */ id_book = null }= {}) {
     const url = new URL(`${this.url}/books`);
     try {
-/*       if(id_user) {
+    /*   if(id_user) {
       url.searchParams.append('id_user', id_user);
     } */
     if(id_book) {
@@ -35,15 +35,20 @@ export class ServiceBookService {
       credentials: 'include',
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        // Redirige al login si no autorizado
+        window.location.href = '/login';
+        return;
+      }
       throw new Error('Error en la solicitud');
     }
     const data = await response.json();
-    console.log(response.status);
     this.arrayBooks = data.data;
-    this.respuesta= response.status
-  }
-  catch (error) {
-    console.error('Error:',error);
+    this.respuesta = response.status;
+  } catch (error) {
+    console.error('Error:', error);
+    // Si el error es de autenticación, también puedes redirigir aquí
+    window.location.href = '/login';
   }
 }
 
