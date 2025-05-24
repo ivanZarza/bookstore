@@ -67,19 +67,21 @@ export class ServiceBookService {
   }
 }
 
-  public edit(book: Book) {
+  public async edit(book: Book) {
     try {
-      const response = fetch(`${this.url}/books`, {
+      const response = await fetch(`${this.url}/books`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({book})
+        body: JSON.stringify({ book })
       });
-      if (!response) {
+      if (!response.ok) {
         throw new Error('Error en la solicitud');
       }
+      this.respuesta = response.status;
+      console.log(this.respuesta);
     } catch (error) {
       console.error('Error:', error);
     }

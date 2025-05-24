@@ -23,6 +23,7 @@ export const useUserStore = defineStore('userService', {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(dataLogin),
+        credentials: 'include',
       });
       if (!response.ok) {
         throw new Error(`Error logging in: ${response.status} ${response.statusText}`);
