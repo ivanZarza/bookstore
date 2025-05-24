@@ -15,6 +15,9 @@ async function verificarToken(req, res, next) {
     const decoded = jwt.verify(token, claveJWT);
     const sql = 'SELECT * FROM user WHERE id_user = ?';
     const user = await pool.query(sql, [decoded.id]);
+console.log('linea 18 middleware token', user[0][0]);
+console.log('linea 19 middleware token', decoded);
+console.log('linea 20 middleware token', decoded.id);
 
     if (user.length === 0) {
       res.clearCookie('autentificacion', {
