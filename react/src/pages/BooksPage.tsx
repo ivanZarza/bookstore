@@ -32,7 +32,7 @@ function BooksPage() {
   }
 
   useEffect(() => {
-    getBooks({ id_user: user?.id_user })
+    getBooks({})
   }, [user, getBooks, books]);
 
 

@@ -34,10 +34,9 @@ const postLogin = async (req, res) => {
     let [result] = await pool.query(datosUsuario, [email]);
     let id = result[0].id_user;
 
-    // Generar el token JWT válido por 1 hora
+
     let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' });
 
-    // Enviar el token como cookie httpOnly
     res.cookie('autentificacion', token, {
       httpOnly: true,
       secure: true,

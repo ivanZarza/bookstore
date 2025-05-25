@@ -151,7 +151,10 @@ function RegisterPage() {
     };
     console.log(nuevoUsuario)
     try {
-      const response = await axios.post(`${VITE_API_ORIGIN}/register`, nuevoUsuario);
+      const response = await axios.post(`${VITE_API_ORIGIN}/register`,
+        nuevoUsuario,
+      { withCredentials: true }
+      );
       console.log(response);
       if (response.status === 200) {
         toast.success("Usuario registrado correctamente");

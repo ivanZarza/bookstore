@@ -96,7 +96,11 @@ function LoginPage() {
     };
     console.log(datosUsuario)
 
-    const response = await axios.post(`${VITE_API_ORIGIN}/login`, datosUsuario,)
+    const response = await axios.post(
+      `${VITE_API_ORIGIN}/login`,
+      datosUsuario,
+      { withCredentials: true }
+    );
     logIn(response.data.data[0])
     if (response.data.ok) {
       toast.success('Inicio de sesión exitoso');
