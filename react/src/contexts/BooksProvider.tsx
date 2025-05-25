@@ -1,4 +1,3 @@
-
 import { createContext, useState } from "react";
 import { Book } from '../configs/type'
 
@@ -35,15 +34,12 @@ function BooksProvider(props: BooksProviderProps) {
 
   const { children } = props;
 
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
-  async function getBooks({ id_user, id_book }: { id_user?: number | null; id_book?: number | null; } = {}) {
+  async function getBooks({  id_book }: { id_user?: number | null; id_book?: number | null; } = {}) {
 
     const url = new URL(`${VITE_API_ORIGIN}/books`);
     try {
-      if (id_user) {
-        url.searchParams.append('id_user', String(id_user));
-      }
       if (id_book) {
         url.searchParams.append('id_book', String(id_book));
       }

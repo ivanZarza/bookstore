@@ -17,17 +17,22 @@ export const useBookStore = defineStore('bookService', {
     getOneBook (book) {
       this.oneBook = book
     },
-    async fetchBooks ({ id_user, id_book } = {}) {
+    async fetchBooks ({ id_book } = {}) {
       const url = new URL(`${VITE_API_ORIGIN}/books`);
       try{
-        if (id_user) {
-          url.searchParams.append('id_user', id_user);
-        }
         if (id_book) {
           url.searchParams.append('id_book', id_book);
         }
         console.log('url', url.toString());
-        const response = await fetch(url);
+        const response = await fetch(url,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+          }
+        );
         if (!response.ok) {
           throw new Error(`Error fetching books: ${response.status} ${response.statusText}`);
         }
