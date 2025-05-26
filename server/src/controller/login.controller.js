@@ -33,6 +33,7 @@ const postLogin = async (req, res) => {
     let datosUsuario = 'SELECT id_user, name, last_name, email, photo FROM user WHERE email = ?';
     let [result] = await pool.query(datosUsuario, [email]);
     let id = result[0].id_user;
+    let user = result[0];
 
 
     let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' });
