@@ -15,7 +15,7 @@ const postLogin = async (req, res) => {
   }
 
   try {
-    let sql = 'SELECT id_user, name, last_name, email, photo, password FROM user WHERE email = ?';
+    let sql = 'Select password from user where email = ?';
     let [usuarioRequerido] = await pool.query(sql, [email]);
 
     if (usuarioRequerido.length === 0) {
