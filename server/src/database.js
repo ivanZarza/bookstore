@@ -23,4 +23,4 @@ const pool = mysql.createConnection({
 
 console.log('Conexión correcta');
 
-module.exports = {pool};
+module.exports = {pool, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT};

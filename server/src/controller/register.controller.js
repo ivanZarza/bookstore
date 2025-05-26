@@ -35,15 +35,20 @@ const postRegister = async (req, res) => {
     let [result] = await pool.query(sql, [name, last_name, email, photo, password]);
     let id = result.insertId;
 
-    // Generar el token JWT válido por 1 hora
+
     let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' });
 
-    // Enviar el token como cookie httpOnly
+    req.session.id_user = id;
+    req.session.email = email;
+    req.session.name = name;
+    req.session.last_name = last_name;
+    req.session.photo = photo;
+
     res.cookie('autentificacion', token, {
       httpOnly: true,
-      secure: true, // Cambia a true si estás usando HTTPS
-      sameSite: 'none', // Cambia a 'lax' si no estás usando HTTPS
-      maxAge: 60 * 60 * 1000 // 1 hora en milisegundos
+      secure: true, 
+      sameSite: 'none', 
+      maxAge: 60 * 60 * 1000 
     });
 
     res.status(200).json({ ok: true, message: 'Exito!!', data: result });

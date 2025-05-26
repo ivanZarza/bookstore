@@ -15,7 +15,7 @@ const postLogin = async (req, res) => {
   }
 
   try {
-    let sql = 'Select password from user where email = ?';
+    let sql = 'SELECT id_user, name, last_name, email, photo, password FROM user WHERE email = ?';
     let [usuarioRequerido] = await pool.query(sql, [email]);
 
     if (usuarioRequerido.length === 0) {
@@ -24,7 +24,7 @@ const postLogin = async (req, res) => {
     }
 
     let passwordHaseado = usuarioRequerido[0].password;
-    console.log('linea 23 de la ruta login JWT Secret:', claveJWT); 
+    console.log('linea 23 de la ruta login JWT Secret:', claveJWT);
     const isMatch = await bcrypt.compare(password, passwordHaseado);
     if (!isMatch) {
       return res.status(400).json({ ok: false, message: 'Contraseña incorrecta' });
@@ -37,11 +37,17 @@ const postLogin = async (req, res) => {
 
     let token = jwt.sign({ id, email }, claveJWT, { expiresIn: '1h' });
 
+    req.session.id_user = user.id_user;
+    req.session.email = user.email;
+    req.session.name = user.name;
+    req.session.last_name = user.last_name;
+    req.session.photo = user.photo;
+
     res.cookie('autentificacion', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      maxAge: 60 * 60 * 1000 
+      maxAge: 60 * 60 * 1000
     });
 
     return res.status(200).json({ ok: true, message: 'Éxito!!', data: result });

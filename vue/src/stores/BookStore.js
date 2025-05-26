@@ -49,6 +49,7 @@ export const useBookStore = defineStore('bookService', {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(book),
       });
     },
@@ -59,6 +60,7 @@ export const useBookStore = defineStore('bookService', {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify( book ),
       });
     },

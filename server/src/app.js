@@ -10,7 +10,7 @@ const usuariosRouters = require("./routers/usuarios.router");
 const errorHandling = require("./error/errorHandling");
 const favoriteRouters = require("./routers/favorite.router"); 
 const readRouters = require("./routers/read.router");
-
+const { sessionMiddleware } = require("./helpers/middlewareExpressSession");
 
 console.log('linea 15 app.js claveJWT', process.env.claveJWT)
 
@@ -73,6 +73,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(sessionMiddleware); 
 app.use(cookieParser());
 
 app.use((req, res, next) => {
