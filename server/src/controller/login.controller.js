@@ -52,6 +52,7 @@ const postLogin = async (req, res) => {
 
     return res.status(200).json({ ok: true, message: 'Éxito!!', data: result });
   } catch (error) {
+    console.log('Error en el login:', error);
     return res.status(500).json({ ok: false, message: error.message });
   }
 }
