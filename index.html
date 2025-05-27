@@ -116,11 +116,15 @@
       <h1>BOOKSTORE</h1>
     </div>
     <div descripcion>
-      <p>Esta es una aplicación de colección de libros que desarrollé para practicar y mejorar mis habilidades en
+      <p>
+        Esta es una aplicación de colección de libros que desarrollé para practicar y mejorar mis habilidades en
         Angular, React y Vue.js. Cada una de las aplicaciones tiene su propio diseño y funcionalidad, pero todas comparten
-        la misma base de datos y API. El backend está desplegado en <strong>Vercel</strong>, y las diferentes páginas de frontend
-        están configuradas con <strong>GitHub Actions</strong> para despliegues automáticos. Este proyecto me permitió explorar
-        conceptos avanzados de desarrollo frontend y backend.</p>
+        la misma base de datos y API. El backend está desarrollado con <strong>Node.js</strong> y <strong>Express</strong>, y está desplegado en <strong>Vercel</strong>.
+        <br><br>
+        Para la seguridad y protección de las rutas en el backend, he implementado dos middlewares principales: <strong>JWT (JSON Web Token)</strong> y <strong>express-session</strong>. El middleware de JWT se encarga de autenticar a los usuarios mediante tokens seguros enviados en cookies, mientras que <strong>express-session</strong> gestiona sesiones de usuario almacenadas en la base de datos. De esta forma, las rutas sensibles de la API solo pueden ser accedidas por usuarios autenticados, combinando lo mejor de ambos métodos de autenticación y protección.
+        <br><br>
+        Las diferentes páginas de frontend están configuradas con <strong>GitHub Actions</strong> para despliegues automáticos. Este proyecto me permitió explorar conceptos avanzados de desarrollo frontend y backend, así como buenas prácticas de seguridad en aplicaciones web modernas.
+      </p>
     </div>
   </header>
   <div bookstore-links>
