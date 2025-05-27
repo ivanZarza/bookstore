@@ -16,6 +16,8 @@ console.log('linea 15 app.js claveJWT', process.env.claveJWT)
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.set("port", process.env.PORT || 3000);
 
 
