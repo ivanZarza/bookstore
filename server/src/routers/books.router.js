@@ -22,3 +22,4 @@ router.delete('/books',  verificarToken, /* verificarSesion, */ booksCtrl.delete
 
 module.exports = router;
 
+ 
