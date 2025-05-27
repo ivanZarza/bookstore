@@ -15,10 +15,10 @@ const verificarSesion = require("../helpers/verificarSesion");
 } */
 // router.get('/books', /* verificarToken, */ handleResult(booksCtrl.getbooks));
 
-router.get('/books',  verificarToken, verificarSesion,  booksCtrl.getbooks);
-router.post('/books',  verificarToken, verificarSesion, booksCtrl.postbooks);
-router.put('/books',  verificarToken, verificarSesion, booksCtrl.putbooks);
-router.delete('/books',  verificarToken, verificarSesion, booksCtrl.deletebooks);
+router.get('/books',  verificarToken, /* verificarSesion, */  booksCtrl.getbooks);
+router.post('/books',  verificarToken, /* verificarSesion, */ booksCtrl.postbooks);
+router.put('/books',  verificarToken, /* verificarSesion, */ booksCtrl.putbooks);
+router.delete('/books',  verificarToken, /* verificarSesion, */ booksCtrl.deletebooks);
 
 module.exports = router;
 
